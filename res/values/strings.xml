@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SuperBank</string>
+    <string name="title_section1">Meine Konten</string>
+    <string name="title_section2">Umsatzanzeige</string>
+    <string name="title_section3">Überweisung</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="title_section4">Einstellungen</string>
+    <string name="zugangsdaten_headline1">Allgemein</string>
+    <string name="zugangsdaten_headline2">Zugang</string>
+    <string name="blz">BLZ</string>
+    <string name="kto">Konto</string>
+    <string name="pin">PIN</string>
+    <string name="sync_button">Synchronisieren</string>
+    <string name="title_section5">Kontakte</string>
+    <string name="title_section6">Sperren</string>
+    <string name="title_section7">Hilfe</string>
+    <string name="title_section8">Impressum</string>
+    <string name="title_section9">Überweisung prüfen</string>
+    <string name="bankname">Name</string>
+    <string name="kontostatus">Status</string>
+    <string name="ueberweisung_headline1">Auftraggeberkonto</string>
+    <string name="ueberweisung_beguenstigter">Begünstigter</string>
+    <string name="ueberweisung_name">Name</string>
+    <string name="ueberweisung_konto">Konto</string>
+    <string name="ueberweisung_blz">BLZ</string>
+    <string name="ueberweisung_bank">Bank</string>
+    <string name="ueberweisung_betrag">Betrag</string>
+    <string name="ueberweisung_verwendung">Verwendungszweck</string>
+    <string name="ueberweisung_weiter">fortfahren</string>
+    <string name="login_name">Name</string>
+    <string name="login_password">PIN</string>
+    <string name="login_button">log in</string>
+    <string name="goback_button">zurück</string>
+    <string name="abbrechen_button">abbrechen</string>
+    <string name="automatischermittelt">automatisch ermittelt</string>
+    <string name="copyright1">&#169; Copyright 2015 SuperBank</string>
+    <string name="copyright2">Daniel Auler und Max Emmert</string>
+    <string name="meinekontenspalte1">IBAN / Konto</string>
+    <string name="meinekontenspalte2">Bezeichnung</string>
+    <string name="meinekontenspalte3">Saldo per</string>
+    <string name="meinekontenspalte4">Funktionen</string>
+    <string name="delete_button">Konto zurücksetzen</string>
+    <string name="drawer_open">Öffnen</string>
+    <string name="drawer_close">Schließen</string>
+    <string name="registrieren">registrieren</string>
+    
+    
+    <string-array name="navigation_drawer_items_array">
+    <item>Home</item>
+</string-array>
+</resources>
