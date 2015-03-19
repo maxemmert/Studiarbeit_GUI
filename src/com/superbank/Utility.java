@@ -22,12 +22,19 @@ import name.studiarbeit.hbci.impl.HbciVersion;
 import org.dom4j.DocumentException;
 import org.dom4j.io.DOMWriter;
 import org.dom4j.io.SAXReader;
+import org.kapott.hbci.manager.HBCIUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
 public class Utility {
+	// Bei DDV bzw. RDH
+	public static String hbciHost;
+	// Bei PinTan
+	public static String hbciServletUrl;
+	private static Object hbciHostVersion;
+	private static Object hbciServletUrlVersion;
 
 	public static String getStringFromFile() throws Exception {
 		ClassLoader cl = MeineKonten.class.getClassLoader();
@@ -181,4 +188,12 @@ public class Utility {
 
 		return hm;
 	}
+
+	public static void setAllCredentials(String blz) {
+		Utility.hbciHost = HBCIUtils.getHBCIHostForBLZ(blz);
+		Utility.hbciServletUrl = HBCIUtils.getHBCIVersionForBLZ(blz);
+		Utility.hbciHostVersion = HBCIUtils.getHBCIVersionForBLZ(blz);
+		Utility.hbciServletUrlVersion = HBCIUtils.getPinTanVersionForBLZ(blz);
+	}
+
 }
