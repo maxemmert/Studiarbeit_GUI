@@ -23,6 +23,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.DOMWriter;
 import org.dom4j.io.SAXReader;
 import org.kapott.hbci.manager.HBCIUtils;
+import org.kapott.hbci.manager.HBCIUtilsInternal;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -31,10 +32,12 @@ import org.w3c.dom.NodeList;
 public class Utility {
 	// Bei DDV bzw. RDH
 	public static String hbciHost;
+	public static Object hbciHostVersion;
 	// Bei PinTan
 	public static String hbciServletUrl;
-	private static Object hbciHostVersion;
-	private static Object hbciServletUrlVersion;
+	public static Object hbciServletUrlVersion;
+	// Bankname - Bankort
+	public static String bankName;
 
 	public static String getStringFromFile() throws Exception {
 		ClassLoader cl = MeineKonten.class.getClassLoader();
@@ -194,6 +197,10 @@ public class Utility {
 		Utility.hbciServletUrl = HBCIUtils.getHBCIVersionForBLZ(blz);
 		Utility.hbciHostVersion = HBCIUtils.getHBCIVersionForBLZ(blz);
 		Utility.hbciServletUrlVersion = HBCIUtils.getPinTanVersionForBLZ(blz);
+		String blzData = HBCIUtilsInternal.getBLZData(blz);
+		String bankName = HBCIUtilsInternal.getNthToken(blzData, 1);
+		String bankLocation = HBCIUtilsInternal.getNthToken(blzData, 2);
+		Utility.bankName = bankName + " - " + bankLocation;
 	}
 
 }
