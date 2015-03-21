@@ -3,7 +3,6 @@ package com.superbank;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -82,15 +81,6 @@ public class Utility {
 
 	public static String getKontostand(Document w3cDoc) {
 		String acct, code, name, securityCode;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					System.in, "UTF-8"), 8192);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		long startT = System.currentTimeMillis();
-
 		HbciAccount a = new HbciAccount("max_emmert", "61050000", w3cDoc);
 		a.setVersion(HbciVersion.PLUS);
 		a.setCredentials(new HbciCredentials());
@@ -98,10 +88,8 @@ public class Utility {
 											// rausnehmen!!
 
 		a.getCredentials().setPin("PASSWORD");
-		long accountT = System.currentTimeMillis();
 
 		HbciSession session = (HbciSession) a.createHbciSession();
-		long sessionT = System.currentTimeMillis();
 
 		String blz = "61050000";
 		String country = "DE";
@@ -116,7 +104,6 @@ public class Utility {
 		session.setPassportPath(null);
 
 		session.logIn();
-		long loginT = System.currentTimeMillis();
 
 		session.acquireBalance();
 
@@ -125,7 +112,6 @@ public class Utility {
 		Transactions transactions = a.getTransactions();
 
 		Balance balance = a.getBalance();
-		long balanceT = System.currentTimeMillis();
 
 		if (transactions != null) {
 
@@ -149,16 +135,6 @@ public class Utility {
 			System.out.print("Latest Transaction: \n"
 					+ transactions.latestTransaction().toString());
 		}
-		System.out.println("\n");
-		System.out.println("_END_");
-
-		System.out.println("Total execution time balance: "
-				+ (balanceT - startT));
-		System.out.println("Total execution time login: " + (loginT - startT));
-		System.out.println("Total execution time session: "
-				+ (sessionT - startT));
-		System.out.println("Total execution time account: "
-				+ (accountT - startT));
 
 		// Timestamp und Money vom Balance-Objekt holen
 		if (balance != null) {
@@ -218,23 +194,156 @@ public class Utility {
 	 * @param username
 	 * @param passwd
 	 */
-	public static void newKontoToCredentials(String blz, int i,
+	public static void newKontoToCredentials(String blz, String kontoNummer,
 			String username, String passwd, String currentTanMethod,
-			String filterTyp, String laenderKennung) {
+			String filterTyp, String laenderKennung, int i) {
 		String num = String.valueOf(i);
 		Editor editor = LoginActivity.sharedpreferences.edit();
 		editor.putString("hbciHost" + "_" + num,
 				HBCIUtils.getHBCIHostForBLZ(blz));
 		editor.putString("hbciServletUrl" + "_" + num,
-				HBCIUtils.getHBCIVersionForBLZ(blz));
+				HBCIUtils.getPinTanURLForBLZ(blz)); // TODO: beim debuggen mal
+													// gucken ob pintanurl und
+													// hbcihost nicht vertauscht
+													// wurden
 		editor.putString("hbciHostVersion" + "_" + num,
 				HBCIUtils.getHBCIVersionForBLZ(blz));
 		editor.putString("hbciServletUrlVersion" + "_" + num,
 				HBCIUtils.getPinTanVersionForBLZ(blz));
-		editor.putString(username + "_" + num, passwd);
+		editor.putString("kontoUsername" + "_" + num, username);
+		editor.putString("kontoPasswd" + "_" + num, passwd);
 		editor.putString("currentTanMethod" + "_" + num, currentTanMethod);
 		editor.putString("filterTyp" + "_" + num, filterTyp);
 		editor.putString("laenderKennung" + "_", laenderKennung);
+		editor.putString("kontoNummer" + "_" + num, kontoNummer);
+		editor.putString("bankleitzahl" + "_" + num, blz);
 		editor.commit();
 	}
+
+	public static HbciVersion getVersionByString(String str) {
+		if (str == "201") {
+			return HbciVersion.V201;
+		} else if (str == "210") {
+			return HbciVersion.V210;
+		} else if (str == "220") {
+			return HbciVersion.V220;
+		} else if (str == "300") {
+			return HbciVersion.V300;
+		} else
+			return HbciVersion.PLUS;
+	}
+
+	public static String getKontostandByCredentials(Document w3cDoc, int i,
+			boolean pintanEnabled) {
+		String acct, code, name, securityCode;
+		HbciAccount a = new HbciAccount(
+				LoginActivity.sharedpreferences.getString("kontoUsername" + "_"
+						+ i, ""), LoginActivity.sharedpreferences.getString(
+						"bankleitzahl" + "_" + i, ""), w3cDoc);
+		if (pintanEnabled) {
+			String url = LoginActivity.sharedpreferences.getString(
+					"hbciServletUrlVersion" + "_" + i, "");
+			a.setVersion(getVersionByString(url));
+		} else {
+			String url = LoginActivity.sharedpreferences.getString(
+					"hbciHostVersion" + "_" + i, "");
+			a.setVersion(getVersionByString(url));
+		}
+
+		a.setCredentials(new HbciCredentials());
+		a.setAccountNumber(LoginActivity.sharedpreferences.getString(
+				"kontoNummer" + "_" + i, "")); // TODO: kann man bestimmt wieder
+												// rausnehmen!!
+
+		a.getCredentials().setPin(
+				LoginActivity.sharedpreferences.getString("kontoPasswd" + "_"
+						+ i, ""));
+
+		HbciSession session = (HbciSession) a.createHbciSession();
+
+		String blz = LoginActivity.sharedpreferences.getString("bankleitzahl"
+				+ "_" + i, "");
+		String country = LoginActivity.sharedpreferences.getString(
+				"laenderKennung" + "_" + i, "");
+		String userId = LoginActivity.sharedpreferences.getString(
+				"kontoUsername" + "_" + i, "");
+		int port = 443;
+		String filterType = LoginActivity.sharedpreferences.getString(
+				"filterTyp" + "_" + i, "");
+
+		String host = "";
+		if (pintanEnabled) {
+			host = LoginActivity.sharedpreferences.getString("hbciServletUrl"
+					+ "_" + i, "");
+		} else {
+			host = LoginActivity.sharedpreferences.getString("hbciHost" + "_"
+					+ i, "");
+		}
+		String currentTanMethod = LoginActivity.sharedpreferences.getString(
+				"currentTanMethod" + "_" + i, "");
+		session.setCredentials(blz, country, userId, port, filterType, host,
+				currentTanMethod);
+
+		session.setPassportPath(null);
+
+		session.logIn();
+
+		session.acquireBalance();
+
+		session.acquireTransactions();
+
+		Transactions transactions = a.getTransactions();
+
+		Balance balance = a.getBalance();
+
+		if (transactions != null) {
+
+			Iterator<Transaction> transactionIterator = transactions
+					.getIterator();
+
+			int j = 0;
+			while (j < 10 && transactionIterator.hasNext()) {
+				Editor editor = LoginActivity.sharedpreferences.edit();
+
+				Transaction currentTransaction = transactionIterator.next();
+				// Hole Überweisungsbetrag
+				Money money = currentTransaction.getBalance();
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "money", money.toString());
+				// Hole Überweisungsdatum
+				Date date = currentTransaction.getBookingDate();
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "date", date.toGMTString());
+				// Hole Zielaccount bzw. "Gegenaccount"
+
+				AccountReference counterAccount = currentTransaction
+						.getCounterAccount();
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "counterAccount", counterAccount.getName());
+				// Hole Überweisungstext als List<String> KP OB ES FUNZT!
+				List<String> textList = currentTransaction.getUsageLines();
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "transactionText_0", textList.get(0));
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "transactionText_1", textList.get(1));
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "transactionText_2", textList.get(2));
+				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+						+ "transactionText_3", textList.get(3));
+			}
+		}
+
+		// Timestamp und Money vom Balance-Objekt holen
+		if (balance != null) {
+			Money money = balance.getAvailable();
+
+			Editor editor = LoginActivity.sharedpreferences.edit();
+			editor.putString("kontoGuthaben" + "_" + String.valueOf(i),
+					money.toString());
+
+			return "Available Money: " + money.toString();
+		}
+		return "fehler";
+	}
+
 }
