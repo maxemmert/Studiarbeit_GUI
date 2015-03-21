@@ -29,6 +29,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
+import android.content.SharedPreferences.Editor;
+
 public class Utility {
 	// Bei DDV bzw. RDH
 	public static String hbciHost;
@@ -192,15 +194,47 @@ public class Utility {
 		return hm;
 	}
 
-	public static void setAllCredentials(String blz) {
-		Utility.hbciHost = HBCIUtils.getHBCIHostForBLZ(blz);
-		Utility.hbciServletUrl = HBCIUtils.getHBCIVersionForBLZ(blz);
-		Utility.hbciHostVersion = HBCIUtils.getHBCIVersionForBLZ(blz);
-		Utility.hbciServletUrlVersion = HBCIUtils.getPinTanVersionForBLZ(blz);
+	/**
+	 * Gibt den Banknamen anhand der blz zurück
+	 * 
+	 * @param blz
+	 * @return name der bank+ort
+	 */
+	public static String getBankNameForBLZ(String blz) {
 		String blzData = HBCIUtilsInternal.getBLZData(blz);
 		String bankName = HBCIUtilsInternal.getNthToken(blzData, 1);
 		String bankLocation = HBCIUtilsInternal.getNthToken(blzData, 2);
-		Utility.bankName = bankName + " - " + bankLocation;
+		return bankName + " " + bankLocation;
+
 	}
 
+	/**
+	 * Werte werden als Credentials gespeichert. Für konto i zb hbciHost_1. wir
+	 * gehen mal davon aus, dass niemand einen benutzernamen oder ein passwort
+	 * haben, die auf _1 enden.
+	 * 
+	 * @param blz
+	 * @param i
+	 * @param username
+	 * @param passwd
+	 */
+	public static void newKontoToCredentials(String blz, int i,
+			String username, String passwd, String currentTanMethod,
+			String filterTyp, String laenderKennung) {
+		String num = String.valueOf(i);
+		Editor editor = LoginActivity.sharedpreferences.edit();
+		editor.putString("hbciHost" + "_" + num,
+				HBCIUtils.getHBCIHostForBLZ(blz));
+		editor.putString("hbciServletUrl" + "_" + num,
+				HBCIUtils.getHBCIVersionForBLZ(blz));
+		editor.putString("hbciHostVersion" + "_" + num,
+				HBCIUtils.getHBCIVersionForBLZ(blz));
+		editor.putString("hbciServletUrlVersion" + "_" + num,
+				HBCIUtils.getPinTanVersionForBLZ(blz));
+		editor.putString(username + "_" + num, passwd);
+		editor.putString("currentTanMethod" + "_" + num, currentTanMethod);
+		editor.putString("filterTyp" + "_" + num, filterTyp);
+		editor.putString("laenderKennung" + "_", laenderKennung);
+		editor.commit();
+	}
 }
