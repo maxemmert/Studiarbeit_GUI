@@ -30,6 +30,28 @@ import org.w3c.dom.NodeList;
 
 import android.content.SharedPreferences.Editor;
 
+//		Diese Credentials werden für jedes konto i(intStr) gesetzt. 
+//
+// 		"hbciHost" + "_" + intStr
+//		"hbciServletUrl" + "_" + intStr
+//		"hbciHostVersion" + "_" + intStr
+//		"hbciServletUrlVersion" + "_" + intStr
+//		"kontoUsername" + "_" + intStr
+//		"kontoPasswd" + "_" + intStr
+//		"currentTanMethod" + "_" + intStr
+//		"filterTyp" + "_" + intStr // Base64 oder None
+//		"hbciHost" + "_" + intStr
+//		"laenderKennung" + "_" + intStr
+//		"kontoNummer" + "_" + intStr
+//		"bankleitzahl" + "_" + intStr
+//		"transaction" + "_" + intStr + "_" + "money"
+//		"transaction" + "_" + intStr + "_" + "date"
+//		"transaction" + "_" + intStr + "_" + "counterAccount"
+//		"transaction" + "_" + intStr + "_" + "transactionText_0"
+//		"transaction" + "_" + intStr + "_" + "transactionText_1"
+//		"transaction" + "_" + intStr + "_" + "transactionText_2"
+//		"transaction" + "_" + intStr + "_" + "transactionText_3"
+
 public class Utility {
 	// Bei DDV bzw. RDH
 	public static String hbciHost;
@@ -185,6 +207,36 @@ public class Utility {
 	}
 
 	/**
+	 * Löscht alle credentials zu dem konto i. Danach sollte man durch
+	 * aktualisieren der Page die Konto-Liste aktualisieren.
+	 * 
+	 * @param i
+	 */
+	public static void deleteKonto(int i) {
+		String intStr = String.valueOf(i);
+		Editor editor = LoginActivity.sharedpreferences.edit();
+		editor.remove("hbciHost" + "_" + intStr);
+		editor.remove("hbciServletUrl" + "_" + intStr);
+		editor.remove("hbciHostVersion" + "_" + intStr);
+		editor.remove("hbciServletUrlVersion" + "_" + intStr);
+		editor.remove("kontoUsername" + "_" + intStr);
+		editor.remove("kontoPasswd" + "_" + intStr);
+		editor.remove("currentTanMethod" + "_" + intStr);
+		editor.remove("filterTyp" + "_" + intStr); // Base64 oder None
+		editor.remove("hbciHost" + "_" + intStr);
+		editor.remove("laenderKennung" + "_" + intStr);
+		editor.remove("kontoNummer" + "_" + intStr);
+		editor.remove("bankleitzahl" + "_" + intStr);
+		editor.remove("transaction" + "_" + intStr + "_" + "money");
+		editor.remove("transaction" + "_" + intStr + "_" + "date");
+		editor.remove("transaction" + "_" + intStr + "_" + "counterAccount");
+		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_0");
+		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_1");
+		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_2");
+		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_3");
+	}
+
+	/**
 	 * Werte werden als Credentials gespeichert. Für konto i zb hbciHost_1. wir
 	 * gehen mal davon aus, dass niemand einen benutzernamen oder ein passwort
 	 * haben, die auf _1 enden.
@@ -233,117 +285,132 @@ public class Utility {
 			return HbciVersion.PLUS;
 	}
 
-	public static String getKontostandByCredentials(Document w3cDoc, int i,
+	/**
+	 * Gibt false zurück, wenn beim Abfragen des kontostands etwas schief geht.
+	 * Gibt true zurück, wenn alles gut ging und setzt die shared preferences
+	 * für umsatz und transaktionen.
+	 * 
+	 * @param w3cDoc
+	 * @param i
+	 * @param pintanEnabled
+	 * @return
+	 */
+	public static boolean getKontostandByCredentials(Document w3cDoc, int i,
 			boolean pintanEnabled) {
-		String acct, code, name, securityCode;
-		HbciAccount a = new HbciAccount(
-				LoginActivity.sharedpreferences.getString("kontoUsername" + "_"
-						+ i, ""), LoginActivity.sharedpreferences.getString(
-						"bankleitzahl" + "_" + i, ""), w3cDoc);
-		if (pintanEnabled) {
-			String url = LoginActivity.sharedpreferences.getString(
-					"hbciServletUrlVersion" + "_" + i, "");
-			a.setVersion(getVersionByString(url));
-		} else {
-			String url = LoginActivity.sharedpreferences.getString(
-					"hbciHostVersion" + "_" + i, "");
-			a.setVersion(getVersionByString(url));
-		}
-
-		a.setCredentials(new HbciCredentials());
-		a.setAccountNumber(LoginActivity.sharedpreferences.getString(
-				"kontoNummer" + "_" + i, "")); // TODO: kann man bestimmt wieder
-												// rausnehmen!!
-
-		a.getCredentials().setPin(
-				LoginActivity.sharedpreferences.getString("kontoPasswd" + "_"
-						+ i, ""));
-
-		HbciSession session = (HbciSession) a.createHbciSession();
-
-		String blz = LoginActivity.sharedpreferences.getString("bankleitzahl"
-				+ "_" + i, "");
-		String country = LoginActivity.sharedpreferences.getString(
-				"laenderKennung" + "_" + i, "");
-		String userId = LoginActivity.sharedpreferences.getString(
-				"kontoUsername" + "_" + i, "");
-		int port = 443;
-		String filterType = LoginActivity.sharedpreferences.getString(
-				"filterTyp" + "_" + i, "");
-
-		String host = "";
-		if (pintanEnabled) {
-			host = LoginActivity.sharedpreferences.getString("hbciServletUrl"
-					+ "_" + i, "");
-		} else {
-			host = LoginActivity.sharedpreferences.getString("hbciHost" + "_"
-					+ i, "");
-		}
-		String currentTanMethod = LoginActivity.sharedpreferences.getString(
-				"currentTanMethod" + "_" + i, "");
-		session.setCredentials(blz, country, userId, port, filterType, host,
-				currentTanMethod);
-
-		session.setPassportPath(null);
-
-		session.logIn();
-
-		session.acquireBalance();
-
-		session.acquireTransactions();
-
-		Transactions transactions = a.getTransactions();
-
-		Balance balance = a.getBalance();
-
-		if (transactions != null) {
-
-			Iterator<Transaction> transactionIterator = transactions
-					.getIterator();
-
-			int j = 0;
-			while (j < 10 && transactionIterator.hasNext()) {
-				Editor editor = LoginActivity.sharedpreferences.edit();
-
-				Transaction currentTransaction = transactionIterator.next();
-				// Hole Überweisungsbetrag
-				Money money = currentTransaction.getBalance();
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "money", money.toString());
-				// Hole Überweisungsdatum
-				Date date = currentTransaction.getBookingDate();
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "date", date.toGMTString());
-				// Hole Zielaccount bzw. "Gegenaccount"
-
-				AccountReference counterAccount = currentTransaction
-						.getCounterAccount();
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "counterAccount", counterAccount.getName());
-				// Hole Überweisungstext als List<String> KP OB ES FUNZT!
-				List<String> textList = currentTransaction.getUsageLines();
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "transactionText_0", textList.get(0));
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "transactionText_1", textList.get(1));
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "transactionText_2", textList.get(2));
-				editor.putString("transaction" + "_" + String.valueOf(i) + "_"
-						+ "transactionText_3", textList.get(3));
+		try {
+			HbciAccount a = new HbciAccount(
+					LoginActivity.sharedpreferences.getString("kontoUsername"
+							+ "_" + i, ""),
+					LoginActivity.sharedpreferences.getString("bankleitzahl"
+							+ "_" + i, ""), w3cDoc);
+			if (pintanEnabled) {
+				String url = LoginActivity.sharedpreferences.getString(
+						"hbciServletUrlVersion" + "_" + i, "");
+				a.setVersion(getVersionByString(url));
+			} else {
+				String url = LoginActivity.sharedpreferences.getString(
+						"hbciHostVersion" + "_" + i, "");
+				a.setVersion(getVersionByString(url));
 			}
+
+			a.setCredentials(new HbciCredentials());
+			a.setAccountNumber(LoginActivity.sharedpreferences.getString(
+					"kontoNummer" + "_" + i, "")); // TODO: kann man bestimmt
+													// wieder
+													// rausnehmen!!
+
+			a.getCredentials().setPin(
+					LoginActivity.sharedpreferences.getString("kontoPasswd"
+							+ "_" + i, ""));
+
+			HbciSession session = (HbciSession) a.createHbciSession();
+
+			String blz = LoginActivity.sharedpreferences.getString(
+					"bankleitzahl" + "_" + i, "");
+			String country = LoginActivity.sharedpreferences.getString(
+					"laenderKennung" + "_" + i, "");
+			String userId = LoginActivity.sharedpreferences.getString(
+					"kontoUsername" + "_" + i, "");
+			int port = 443;
+			String filterType = LoginActivity.sharedpreferences.getString(
+					"filterTyp" + "_" + i, "");
+
+			String host = "";
+			if (pintanEnabled) {
+				host = LoginActivity.sharedpreferences.getString(
+						"hbciServletUrl" + "_" + i, "");
+			} else {
+				host = LoginActivity.sharedpreferences.getString("hbciHost"
+						+ "_" + i, "");
+			}
+			String currentTanMethod = LoginActivity.sharedpreferences
+					.getString("currentTanMethod" + "_" + i, "");
+			session.setCredentials(blz, country, userId, port, filterType,
+					host, currentTanMethod);
+
+			session.setPassportPath(null);
+
+			session.logIn();
+
+			session.acquireBalance();
+
+			session.acquireTransactions();
+
+			Transactions transactions = a.getTransactions();
+
+			Balance balance = a.getBalance();
+
+			if (transactions != null) {
+
+				Iterator<Transaction> transactionIterator = transactions
+						.getIterator();
+
+				int j = 0;
+				while (j < 10 && transactionIterator.hasNext()) {
+					Editor editor = LoginActivity.sharedpreferences.edit();
+
+					Transaction currentTransaction = transactionIterator.next();
+					// Hole Überweisungsbetrag
+					Money money = currentTransaction.getBalance();
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "money", money.toString());
+					// Hole Überweisungsdatum
+					Date date = currentTransaction.getBookingDate();
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "date", date.toGMTString());
+					// Hole Zielaccount bzw. "Gegenaccount"
+
+					AccountReference counterAccount = currentTransaction
+							.getCounterAccount();
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "counterAccount", counterAccount.getName());
+					// Hole Überweisungstext als List<String> KP OB ES FUNZT!
+					List<String> textList = currentTransaction.getUsageLines();
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "transactionText_0", textList.get(0));
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "transactionText_1", textList.get(1));
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "transactionText_2", textList.get(2));
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + "transactionText_3", textList.get(3));
+				}
+			}
+
+			// Timestamp und Money vom Balance-Objekt holen
+			if (balance != null) {
+				Money money = balance.getAvailable();
+
+				Editor editor = LoginActivity.sharedpreferences.edit();
+				editor.putString("kontoGuthaben" + "_" + String.valueOf(i),
+						money.toString());
+
+			}
+		} catch (Exception e) {
+			return false;
+
 		}
-
-		// Timestamp und Money vom Balance-Objekt holen
-		if (balance != null) {
-			Money money = balance.getAvailable();
-
-			Editor editor = LoginActivity.sharedpreferences.edit();
-			editor.putString("kontoGuthaben" + "_" + String.valueOf(i),
-					money.toString());
-
-			return "Available Money: " + money.toString();
-		}
-		return "fehler";
+		return true;
 	}
 
 }
