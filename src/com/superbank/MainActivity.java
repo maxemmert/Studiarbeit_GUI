@@ -115,7 +115,7 @@ public class MainActivity extends Activity implements
 		drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_action_ueberweisung,
 				"Überweisung");
 		drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_action_zugang,
-				"Einstellungen");
+				"Kontoverwaltung");
 		drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_action_kontakte,
 				"Kontakte");
 		drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_action_sperren,
@@ -163,7 +163,7 @@ public class MainActivity extends Activity implements
 		case 4:
 			fragmentManager
 					.beginTransaction()
-					.replace(R.id.container, Zugangsdaten.newInstance(position))
+					.replace(R.id.container, Kontoverwaltung.newInstance(position))
 					.commit();
 			break;
 		case 5:
@@ -430,6 +430,13 @@ public class MainActivity extends Activity implements
 		EditText verwendung = (EditText) findViewById(R.id.verwendungszweck);
 		checkVerwendung = verwendung.getText().toString();
 
+	}
+
+	public void neuesBankkontoAnlegen(View vi) {
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, NeuesBankkonto.newInstance(1))
+				.addToBackStack(null).commit();
 	}
 
 	/**

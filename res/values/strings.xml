@@ -9,7 +9,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="title_section4">Einstellungen</string>
+    <string name="title_section4">Kontoverwaltung</string>
     <string name="zugangsdaten_headline1">Allgemein</string>
     <string name="zugangsdaten_headline2">Zugang</string>
     <string name="blz">BLZ</string>
@@ -35,8 +35,8 @@
     <string name="login_name">Name</string>
     <string name="login_password">PIN</string>
     <string name="login_button">log in</string>
-    <string name="goback_button">zurück</string>
-    <string name="abbrechen_button">abbrechen</string>
+    <string name="goback_button">Zurück</string>
+    <string name="abbrechen_button">Abbrechen</string>
     <string name="automatischermittelt">automatisch ermittelt</string>
     <string name="copyright1">&#169; Copyright 2015 SuperBank</string>
     <string name="copyright2">Daniel Auler und Max Emmert</string>
@@ -44,7 +44,7 @@
     <string name="meinekontenspalte2">Bezeichnung</string>
     <string name="meinekontenspalte3">Saldo per</string>
     <string name="meinekontenspalte4">Funktionen</string>
-    <string name="delete_button">Konto zurücksetzen</string>
+    <string name="delete_button">SuperBank Account löschen</string>
     <string name="drawer_open">Öffnen</string>
     <string name="drawer_close">Schließen</string>
     <string name="registrieren">registrieren</string>
@@ -53,4 +53,7 @@
     <string-array name="navigation_drawer_items_array">
     <item>Home</item>
 </string-array>
+    <string name="title_neueskonto">Neues Bankkonto anlegen</string>
+    <string name="einstellungen_erklaerung1">Sie können bis zu zehn Konten in SuperBank synchronisieren. Fügen Sie mit folgender Schaltfläche ein neues Konto hinzu.</string>
+    <string name="einstellungen_erklaerung2">Mit dieser Funktion werden sämtliche Daten in SuperBank zurückgesetzt.</string>
 </resources>
