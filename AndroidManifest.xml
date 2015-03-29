@@ -30,5 +30,9 @@
             android:windowSoftInputMode="stateHidden"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.superbank.NeuerAccount"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
   </application>
 </manifest>

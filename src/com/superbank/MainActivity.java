@@ -163,8 +163,8 @@ public class MainActivity extends Activity implements
 		case 4:
 			fragmentManager
 					.beginTransaction()
-					.replace(R.id.container, Kontoverwaltung.newInstance(position))
-					.commit();
+					.replace(R.id.container,
+							Kontoverwaltung.newInstance(position)).commit();
 			break;
 		case 5:
 			fragmentManager.beginTransaction()
@@ -333,7 +333,7 @@ public class MainActivity extends Activity implements
 							public void onClick(DialogInterface dialog,
 									int which) {
 								SharedPreferences credentials = getSharedPreferences(
-										LoginActivity.MyCREDENTIALS,
+										NeuerAccount.MyCREDENTIALS,
 										Context.MODE_PRIVATE);
 								Editor edit = credentials.edit();
 								edit.clear();

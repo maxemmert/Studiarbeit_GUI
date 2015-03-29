@@ -17,8 +17,23 @@
             android:scaleType="centerInside"
             android:src="@drawable/superbanklogo" />
 
+        <TextView
+            android:id="@+id/accountanlegen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Account anlegen"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/darker_gray" />
+
         <EditText
-            android:id="@+id/benutzername"
+            android:id="@+id/initialbenutzername"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bgedittext"
@@ -27,13 +42,23 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/benutzerpin"
+            android:id="@+id/initialbenutzerpin"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/bgedittext"
             android:ems="10"
             android:hint="@string/login_password"
+            android:password="true" />
+
+        <EditText
+            android:id="@+id/repeatinitialbenutzerpin"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bgedittext"
+            android:ems="10"
+            android:hint="wiederhole PIN"
             android:password="true" />
 
         <LinearLayout
@@ -45,33 +70,20 @@
             android:paddingLeft="4.0dip"
             android:paddingRight="4.0dip"
             android:paddingTop="5.0dip" >
-        
+
             <Button
-                android:id="@+id/neueraccountbutton"
+                android:id="@+id/neueraccountbuttonanlegen"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
                 android:background="@drawable/buttonbg"
-                android:onClick="erstelleAcount"
-                android:text="Neuer Account"
+                android:onClick="ausfuehren"
+                android:text="Ausführen"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:visibility="visible" />
-            
-            <Button
-                android:id="@+id/loginbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1.0"
-                android:background="@drawable/buttonbg"
-                android:onClick="login"
-                android:text="Einloggen"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:visibility="visible" />
-           
         </LinearLayout>
-       
+
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"

@@ -32,12 +32,6 @@ public class LoginActivity extends Activity {
 	public static final String name = "nameKey";
 	public static final String pass = "passwordKey";
 
-	// Create User credentials and store them
-	SharedPreferences credentials;
-	public static final String MyCREDENTIALS = "MyCreds";
-	public static final String credentialsN = "name";
-	public static final String credentialsP = "password";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,44 +42,42 @@ public class LoginActivity extends Activity {
 
 	@Override
 	protected void onResume() {
+		SharedPreferences credentials = getSharedPreferences(
+				NeuerAccount.MyCREDENTIALS, Context.MODE_PRIVATE);
 		sharedpreferences = getSharedPreferences(MyPREFERENCES,
 				Context.MODE_PRIVATE);
-		credentials = getSharedPreferences(MyCREDENTIALS, Context.MODE_PRIVATE);
-		if (!credentials.contains(credentialsN)) {
+		if (!credentials.contains(NeuerAccount.credentialsN)) {
 			firstOpen();
-		}
-		if (sharedpreferences.contains(name)) {
-			if (sharedpreferences.contains(pass)) {
-				if (credentials.getString(credentialsN, null).equals(
-						sharedpreferences.getString(name, null))
-						&& credentials.getString(credentialsP, null).equals(
-								sharedpreferences.getString(pass, null))) {
-					Intent i = new Intent(this,
-							com.superbank.MainActivity.class);
-					startActivity(i);
-				}
-			}
 		}
 		super.onResume();
 	}
 
+	// wenn auf "Neuer Account" getippt wird
+	public void erstelleAcount(View vi) {
+		SharedPreferences credentials = getSharedPreferences(
+				NeuerAccount.MyCREDENTIALS, Context.MODE_PRIVATE);
+
+		if (credentials.getString(NeuerAccount.credentialsP, null) == null) {
+			Intent intent = new Intent(this, com.superbank.NeuerAccount.class);
+			startActivity(intent);
+		} else {
+			alertKontoBereitsRegistriert();
+		}
+	}
+
+	// wenn auf "Einloggen" getippt wird
 	public void login(View view) {
+		SharedPreferences credentials = getSharedPreferences(
+				NeuerAccount.MyCREDENTIALS, Context.MODE_PRIVATE);
 		Editor editor = sharedpreferences.edit();
 		String u = username.getText().toString();
 		String p = password.getText().toString();
 		editor.putString(name, u);
 		editor.putString(pass, p);
-
-		if (!credentials.contains(credentialsN)) {
-			if (!u.equals("") && !p.equals("")) {
-				createUser(u, p);
-			}
-		}
 		editor.commit();
-
-		if (u.equals(credentials.getString(credentialsN, null))
-				&& p.equals(credentials.getString(credentialsP, null))
-				&& !u.equals("") && !p.equals("")) {
+		if (u.equals(credentials.getString(NeuerAccount.credentialsN, null))
+				&& p.equals(credentials.getString(NeuerAccount.credentialsP,
+						null)) && !u.equals("") && !p.equals("")) {
 			delayAndWelcome(view);
 			username.setText("");
 			password.setText("");
@@ -94,15 +86,6 @@ public class LoginActivity extends Activity {
 		} else {
 			alertWrongCredentials();
 		}
-	}
-
-	// create new credentials
-	public void createUser(String u, String p) {
-		credentials = getSharedPreferences(MyCREDENTIALS, Context.MODE_PRIVATE);
-		Editor editor = credentials.edit();
-		editor.putString(credentialsN, u);
-		editor.putString(credentialsP, p);
-		editor.commit();
 	}
 
 	public void delayAndWelcome(View view) {
@@ -172,14 +155,26 @@ public class LoginActivity extends Activity {
 						}).setIcon(android.R.drawable.ic_dialog_alert).show();
 	}
 
+	private void alertKontoBereitsRegistriert() {
+		new AlertDialog.Builder(this)
+				.setTitle("Meldung")
+				.setMessage("Sie haben bereits ein Konto registriert.")
+				.setNeutralButton(android.R.string.ok,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// continue
+							}
+						}).setIcon(android.R.drawable.ic_dialog_alert).show();
+	}
+
 	private void firstOpen() {
 		new AlertDialog.Builder(this)
 				.setTitle("Willkommen")
 				.setMessage(
-						"Lieber Nutzer, da dies dein erster Aufruf von SuperBank ist, musst du eine PIN hinterlegen, um deine "
-								+ "Konten vor unberechtigtem Zugriff zu schützen. Bitte gib dazu einen Benutzernamen und ein "
-								+ "Passwort an. Damit loggst du dich zukünftig immer ein. Falls du die Zugangsdaten vergessen hast, "
-								+ "schaue bitte in das Benutzerhandbuch der App. Das Team von SuperBank wünscht dir viel Spaß mit der App.")
+						"Dies ist ihr erster Aufruf von SuperBank. Bitte legen Sie "
+								+ "sich zunächst einen Account an. Das Team von SuperBank wünscht viel Spaß mit der App.")
 				.setNeutralButton(android.R.string.ok,
 						new DialogInterface.OnClickListener() {
 							@Override
