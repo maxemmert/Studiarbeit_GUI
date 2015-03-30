@@ -1,11 +1,13 @@
 package com.superbank;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 
 import org.dom4j.io.SAXReader;
+import org.kapott.hbci.manager.HBCIUtils;
 import org.kapott.hbci.manager.XMLStorage;
 import org.w3c.dom.Element;
 
@@ -18,6 +20,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -404,6 +407,39 @@ public class MainActivity extends Activity implements
 	 */
 	public void syncKonto(View vi) {
 		System.out.println("sync mein Konto");
+	}
+
+	/**
+	 * Runs if the bank-field in ueberweisung is selected. Gets the bank for the
+	 * given blz.
+	 * 
+	 * @param vi
+	 */
+	public void printBankByBLZ(View vi) {
+
+		AssetManager am = getAssets();
+		InputStream is = null;
+		try {
+			is = am.open("blz.properties");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		HBCIUtils.initDataStructures();
+		try {
+			HBCIUtils.refreshBLZList(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		EditText beguenstigterBLZ = (EditText) findViewById(R.id.beguenstigter_blz);
+		String beguenstigterBLZStr = beguenstigterBLZ.getText().toString();
+		String blzStr = Utility.getBankNameForBLZ(beguenstigterBLZStr);
+		EditText bankName = (EditText) findViewById(R.id.beguenstigter_bank);
+		bankName.setText(blzStr);
+
 	}
 
 	/**
