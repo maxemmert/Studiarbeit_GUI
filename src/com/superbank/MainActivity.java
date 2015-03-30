@@ -490,7 +490,7 @@ public class MainActivity extends Activity implements
 	}
 
 	// Neues Bankkonto syncen
-	public void neuesKontoHinzufuegen(View vi) {
+	public void neuesKontoHinzufuegen(View vi) throws IOException {
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, MeineKonten.newInstance(1))
@@ -509,6 +509,25 @@ public class MainActivity extends Activity implements
 		newKontoTanmethod = "911";
 		newKontoFiltertyp = "Base64";
 		newKontoLocation = "DE";
+
+		AssetManager am = getAssets();
+		InputStream is = null;
+		try {
+			is = am.open("blz.properties");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		HBCIUtils.initDataStructures();
+		try {
+			HBCIUtils.refreshBLZList(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		HBCIUtils.refreshBLZList(is);
 
 		Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
 				newKontoBenutzer, newKontoPin, newKontoTanmethod,

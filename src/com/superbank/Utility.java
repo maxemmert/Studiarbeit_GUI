@@ -266,7 +266,7 @@ public class Utility {
 		editor.putString("kontoPasswd" + "_" + num, passwd);
 		editor.putString("currentTanMethod" + "_" + num, currentTanMethod);
 		editor.putString("filterTyp" + "_" + num, filterTyp);
-		editor.putString("laenderKennung" + "_", laenderKennung);
+		editor.putString("laenderKennung" + "_" + num, laenderKennung);
 		editor.putString("kontoNummer" + "_" + num, kontoNummer);
 		editor.putString("bankleitzahl" + "_" + num, blz);
 		editor.commit();
