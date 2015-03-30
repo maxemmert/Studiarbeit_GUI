@@ -34,6 +34,7 @@ public class NeuesBankkonto extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_neuesbankkonto,
 				container, false);
+		((MainActivity) getActivity()).setTitle("Neues Bankkonto anlegen");
 		return rootView;
 	}
 

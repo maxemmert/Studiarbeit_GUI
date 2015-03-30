@@ -52,6 +52,15 @@ public class MainActivity extends Activity implements
 	public static String checkBetrag;
 	public static String checkVerwendung;
 
+	// neues bankkonto
+	private static String newKontoKto;
+	private static String newKontoBlz;
+	private static String newKontoPin;
+	private static String newKontoBenutzer;
+	private static String newKontoTanmethod;
+	private static String newKontoFiltertyp;
+	private static String newKontoLocation;
+
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
 	 * navigation drawer.
@@ -69,6 +78,7 @@ public class MainActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -395,9 +405,13 @@ public class MainActivity extends Activity implements
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		EditText kontostand = (EditText) findViewById(R.id.kontostand);
-		kontostand.setText(Utility.getKontostand(w3cDoc));
-
+		Utility.getKontostandByCredentials(w3cDoc, 1, true);
+		System.out.println(LoginActivity.sharedpreferences.getString(
+				"kontoGuthaben_1", null));
+		// public static EditText kontostand = kontostand = (EditText)
+		// findViewById(R.id.kontostand);
+		// kontostand.setText(LoginActivity.sharedpreferences.getString(
+		// "kontoGuthaben_1", "Fehler"));
 	}
 
 	/**
@@ -473,6 +487,34 @@ public class MainActivity extends Activity implements
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, NeuesBankkonto.newInstance(1))
 				.addToBackStack(null).commit();
+	}
+
+	// Neues Bankkonto syncen
+	public void neuesKontoHinzufuegen(View vi) {
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, MeineKonten.newInstance(1))
+				.addToBackStack(null).commit();
+
+		EditText kontonummer = (EditText) findViewById(R.id.kontonummerneu);
+		newKontoKto = kontonummer.getText().toString();
+		EditText blz = (EditText) findViewById(R.id.blznummerneu);
+		newKontoBlz = blz.getText().toString();
+		EditText pin = (EditText) findViewById(R.id.pinnummerneu);
+		newKontoPin = pin.getText().toString();
+		EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
+		newKontoBenutzer = benutzerkennung.getText().toString();
+
+		// wird noch geändert
+		newKontoTanmethod = "911";
+		newKontoFiltertyp = "Base64";
+		newKontoLocation = "DE";
+
+		Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
+				newKontoBenutzer, newKontoPin, newKontoTanmethod,
+				newKontoFiltertyp, newKontoLocation, 1);
+		kontostandAbrufen(vi);
+
 	}
 
 	/**

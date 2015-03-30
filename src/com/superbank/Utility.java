@@ -270,6 +270,8 @@ public class Utility {
 		editor.putString("kontoNummer" + "_" + num, kontoNummer);
 		editor.putString("bankleitzahl" + "_" + num, blz);
 		editor.commit();
+		System.out.println(LoginActivity.sharedpreferences.getString(
+				"kontoNummer_1", null));
 	}
 
 	public static HbciVersion getVersionByString(String str) {
@@ -394,6 +396,7 @@ public class Utility {
 							+ "_" + "transactionText_2", textList.get(2));
 					editor.putString("transaction" + "_" + String.valueOf(i)
 							+ "_" + "transactionText_3", textList.get(3));
+					editor.commit();
 				}
 			}
 
@@ -404,11 +407,12 @@ public class Utility {
 				Editor editor = LoginActivity.sharedpreferences.edit();
 				editor.putString("kontoGuthaben" + "_" + String.valueOf(i),
 						money.toString());
+				editor.commit();
 
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
-
 		}
 		return true;
 	}

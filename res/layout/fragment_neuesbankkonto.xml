@@ -10,89 +10,11 @@
         android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_neueskonto"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zugangsdaten_headline1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp" >
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" >
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/kontostatus"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <EditText
-                    android:id="@+id/kontostatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bgedittext"
-                    android:ems="10"
-                    android:editable="false"
-                    android:hint=""
-                    android:inputType="text" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp" >
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bankname"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <EditText
-                    android:id="@+id/bankname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bgedittext"
-                    android:ems="10"
-                    android:inputType="text" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/zugangsdaten_headline2"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp" >
+            android:layout_marginLeft="5dp" 
+            android:layout_marginTop="15dp">
 
             <TableRow
                 android:id="@+id/tableRow3"
@@ -101,15 +23,15 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textview45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="@string/kto"
+                    android:text="Kontonummer"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <EditText
-                    android:id="@+id/kontonummer"
+                    android:id="@+id/kontonummerneu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bgedittext"
@@ -131,7 +53,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <EditText
-                    android:id="@+id/blz"
+                    android:id="@+id/blznummerneu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bgedittext"
@@ -139,6 +61,27 @@
                     android:inputType="number" />
             </TableRow>
 
+             <TableRow
+                android:id="@+id/tableRow89"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Benutzerkennung"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <EditText
+                    android:id="@+id/benutzerneu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bgedittext"
+                    android:ems="10"/>
+            </TableRow>
+            
             <TableRow
                 android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
@@ -153,12 +96,69 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <EditText
-                    android:id="@+id/pin"
+                    android:id="@+id/pinnummerneu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bgedittext"
-                    android:ems="10"
-                    android:inputType="numberPassword" />
+                    android:password="true"
+                    android:ems="10"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanmethode"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/tanmethode_spinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filtertyp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/filtertypspinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/textView59"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Länderkennung"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/landspinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
             </TableRow>
         </TableLayout>
 
@@ -190,9 +190,10 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
                 android:background="@drawable/buttonbg"
-                android:onClick="syncKonto"
+                android:onClick="neuesKontoHinzufuegen"
                 android:text="@string/sync_button"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-           </LinearLayout>
-     </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
 </ScrollView>

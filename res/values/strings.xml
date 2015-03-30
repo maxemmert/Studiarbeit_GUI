@@ -56,4 +56,10 @@
     <string name="title_neueskonto">Neues Bankkonto anlegen</string>
     <string name="einstellungen_erklaerung1">Sie können bis zu zehn Konten in SuperBank synchronisieren. Fügen Sie mit folgender Schaltfläche ein neues Konto hinzu.</string>
     <string name="einstellungen_erklaerung2">Mit dieser Funktion werden sämtliche Daten in SuperBank zurückgesetzt.</string>
+
+      <string-array name="land_spinner_items">
+        <item>DE</item>
+        <item>EN</item>
+    </string-array>
+    
 </resources>
