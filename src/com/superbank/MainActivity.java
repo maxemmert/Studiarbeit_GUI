@@ -25,11 +25,16 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.example.superbank.R;
 
@@ -43,6 +48,7 @@ public class MainActivity extends Activity implements
 	ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
+	private PopupWindow pw;
 	Context context;
 
 	public static String checkBeguenstigter;
@@ -143,6 +149,7 @@ public class MainActivity extends Activity implements
 		DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this,
 				R.layout.listview_item_row, drawerItem);
 		mDrawerList.setAdapter(adapter);
+
 	}
 
 	@Override
@@ -487,52 +494,65 @@ public class MainActivity extends Activity implements
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, NeuesBankkonto.newInstance(1))
 				.addToBackStack(null).commit();
+
+		// Set Content of Spinner
+		// String[] Lands = { "DE", "EN" };
+		//
+		// Spinner landSpinner = (Spinner) findViewById(R.id.landspinner);
+		// ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
+		// android.R.layout.simple_spinner_item, Lands);
+		// spinnerAdapter
+		// .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// landSpinner.setAdapter(spinnerAdapter);
 	}
 
 	// Neues Bankkonto syncen
 	public void neuesKontoHinzufuegen(View vi) throws IOException {
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.container, MeineKonten.newInstance(1))
-				.addToBackStack(null).commit();
 
-		EditText kontonummer = (EditText) findViewById(R.id.kontonummerneu);
-		newKontoKto = kontonummer.getText().toString();
-		EditText blz = (EditText) findViewById(R.id.blznummerneu);
-		newKontoBlz = blz.getText().toString();
-		EditText pin = (EditText) findViewById(R.id.pinnummerneu);
-		newKontoPin = pin.getText().toString();
-		EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
-		newKontoBenutzer = benutzerkennung.getText().toString();
+		initiatePopupWindow();
 
-		// wird noch geändert
-		newKontoTanmethod = "911";
-		newKontoFiltertyp = "Base64";
-		newKontoLocation = "DE";
-
-		AssetManager am = getAssets();
-		InputStream is = null;
-		try {
-			is = am.open("blz.properties");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		HBCIUtils.initDataStructures();
-		try {
-			HBCIUtils.refreshBLZList(is);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		HBCIUtils.refreshBLZList(is);
-
-		Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
-				newKontoBenutzer, newKontoPin, newKontoTanmethod,
-				newKontoFiltertyp, newKontoLocation, 1);
-		kontostandAbrufen(vi);
+		// FragmentManager fragmentManager = getFragmentManager();
+		// fragmentManager.beginTransaction()
+		// .replace(R.id.container, MeineKonten.newInstance(1))
+		// .addToBackStack(null).commit();
+		//
+		// EditText kontonummer = (EditText) findViewById(R.id.kontonummerneu);
+		// newKontoKto = kontonummer.getText().toString();
+		// EditText blz = (EditText) findViewById(R.id.blznummerneu);
+		// newKontoBlz = blz.getText().toString();
+		// EditText pin = (EditText) findViewById(R.id.pinnummerneu);
+		// newKontoPin = pin.getText().toString();
+		// EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
+		// newKontoBenutzer = benutzerkennung.getText().toString();
+		//
+		// // wird noch geändert
+		// newKontoTanmethod = "911";
+		// newKontoFiltertyp = "Base64";
+		// newKontoLocation = "DE";
+		//
+		// AssetManager am = getAssets();
+		// InputStream is = null;
+		// try {
+		// is = am.open("blz.properties");
+		// } catch (IOException e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
+		//
+		// HBCIUtils.initDataStructures();
+		// try {
+		// HBCIUtils.refreshBLZList(is);
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		//
+		// HBCIUtils.refreshBLZList(is);
+		//
+		// Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
+		// newKontoBenutzer, newKontoPin, newKontoTanmethod,
+		// newKontoFiltertyp, newKontoLocation, 1);
+		// kontostandAbrufen(vi);
 
 	}
 
@@ -557,4 +577,41 @@ public class MainActivity extends Activity implements
 		fm.popBackStack();
 	}
 
+	// Popup Spinner
+	private void initiatePopupWindow() {
+
+		try {
+			// Darken Layout
+			ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
+			LayoutParams darkenParams = (LayoutParams) darkenScreen
+					.getLayoutParams();
+			darkenParams.height = LayoutParams.MATCH_PARENT;
+			darkenParams.width = LayoutParams.MATCH_PARENT;
+			darkenScreen.setLayoutParams(darkenParams);
+
+			// We need to get the instance of the LayoutInflater, use the
+			// context of this activity
+			LayoutInflater inflater = (LayoutInflater) MainActivity.this
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			// Inflate the view from a predefined XML layout
+			View layout = inflater.inflate(R.layout.popupwindow_spinner, null);
+			pw = new PopupWindow(layout, 350, 250, true);
+			// display the popup in the center
+			pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void closePopupWindow() {
+		// Remove darken screen
+		ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
+		LayoutParams darkenParams = (LayoutParams) darkenScreen
+				.getLayoutParams();
+		darkenParams.height = 0;
+		darkenParams.width = 0;
+		darkenScreen.setLayoutParams(darkenParams);
+		// hide slider
+		pw.dismiss();
+	}
 }

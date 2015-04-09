@@ -7,6 +7,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="libs/hcbiwrapper-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="libs/dom4j-android-src.jar"/>
-	<classpathentry kind="lib" path="libs/hbci4java-2.5.13.jar"/>
+	<classpathentry kind="lib" path="libs/hbci4java-2.5.13.jar" sourcepath="/Studiarbeit_HBCIPatched"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
