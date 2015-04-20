@@ -67,6 +67,26 @@ public class MainActivity extends Activity implements
 	private static String newKontoFiltertyp;
 	private static String newKontoLocation;
 
+	// Kontostaende
+	// 1. Konto
+	public static String kontostand1;
+	public static String bankname1;
+	public static String kontonummer1;
+	public static String blz1;
+	// 2. Konto
+	public static String kontostand2;
+	public static String bankname2;
+	public static String kontonummer2;
+	public static String blz2;
+	// 3. Konto
+	public static String kontostand3;
+	public static String bankname3;
+	public static String kontonummer3;
+	public static String blz3;
+	// Summe und Datum
+	public static String datum;
+	public static String summe;
+
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
 	 * navigation drawer.
@@ -84,7 +104,7 @@ public class MainActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		setBankCredentialsInView();
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -383,7 +403,7 @@ public class MainActivity extends Activity implements
 				.replace(R.id.container, MeineKonten.newInstance(1)).commit();
 	}
 
-	public void kontostandAbrufen(View vi) {
+	public void kontostandAbrufen(View vi, int j) {
 
 		String xmlString = null;
 		try {
@@ -412,13 +432,9 @@ public class MainActivity extends Activity implements
 					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
 		}
-		Utility.getKontostandByCredentials(w3cDoc, 1, true);
-		System.out.println(LoginActivity.sharedpreferences.getString(
-				"kontoGuthaben_1", null));
-		// public static EditText kontostand = kontostand = (EditText)
-		// findViewById(R.id.kontostand);
-		// kontostand.setText(LoginActivity.sharedpreferences.getString(
-		// "kontoGuthaben_1", "Fehler"));
+
+		Utility.getKontostandByCredentials(w3cDoc, j, true);
+
 	}
 
 	/**
@@ -506,54 +522,103 @@ public class MainActivity extends Activity implements
 		// landSpinner.setAdapter(spinnerAdapter);
 	}
 
+	private void setBankCredentialsInView() {
+
+		// 1.Konto
+		kontostand1 = LoginActivity.credentials
+				.getString("kontoGuthaben_1", "").replace("[", "")
+				.replace("]", "");
+		bankname1 = LoginActivity.credentials.getString("bankName_1", "");
+		kontonummer1 = LoginActivity.credentials.getString("kontoNummer_1", "");
+		blz1 = LoginActivity.credentials.getString("bankleitzahl_1", "");
+		// 2.Konto
+		kontostand2 = LoginActivity.credentials
+				.getString("kontoGuthaben_2", "").replace("[", "")
+				.replace("]", "");
+		bankname2 = LoginActivity.credentials.getString("bankName_2", "");
+		kontonummer2 = LoginActivity.credentials.getString("kontoNummer_2", "");
+		blz2 = LoginActivity.credentials.getString("bankleitzahl_2", "");
+		// 3.Konto
+		kontostand3 = LoginActivity.credentials
+				.getString("kontoGuthaben_3", "").replace("[", "")
+				.replace("]", "");
+		bankname3 = LoginActivity.credentials.getString("bankName_3", "");
+		kontonummer3 = LoginActivity.credentials.getString("kontoNummer_3", "");
+		blz3 = LoginActivity.credentials.getString("bankleitzahl_3", "");
+
+		// Summenbildung
+		String ktSt1 = "0.0";
+		String ktSt2 = "0.0";
+		String ktSt3 = "0.0";
+		if (kontostand1 != "") {
+			ktSt1 = kontostand1;
+		}
+		if (kontostand2 != "") {
+			ktSt2 = kontostand2;
+		}
+		if (kontostand3 != "") {
+			ktSt3 = kontostand3;
+		}
+
+		summe = String.valueOf((Double.valueOf(ktSt1.replace(" EUR", ""))
+				+ Double.valueOf(ktSt2.replace(" EUR", "")) + Double
+				.valueOf(ktSt3.replace(" EUR", "")))) + " EUR";
+	}
+
 	// Neues Bankkonto syncen
 	public void neuesKontoHinzufuegen(View vi) throws IOException {
 
-		initiatePopupWindow();
+		// initiatePopupWindow();
 
-		// FragmentManager fragmentManager = getFragmentManager();
-		// fragmentManager.beginTransaction()
-		// .replace(R.id.container, MeineKonten.newInstance(1))
-		// .addToBackStack(null).commit();
-		//
-		// EditText kontonummer = (EditText) findViewById(R.id.kontonummerneu);
-		// newKontoKto = kontonummer.getText().toString();
-		// EditText blz = (EditText) findViewById(R.id.blznummerneu);
-		// newKontoBlz = blz.getText().toString();
-		// EditText pin = (EditText) findViewById(R.id.pinnummerneu);
-		// newKontoPin = pin.getText().toString();
-		// EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
-		// newKontoBenutzer = benutzerkennung.getText().toString();
-		//
-		// // wird noch geändert
-		// newKontoTanmethod = "911";
-		// newKontoFiltertyp = "Base64";
-		// newKontoLocation = "DE";
-		//
-		// AssetManager am = getAssets();
-		// InputStream is = null;
-		// try {
-		// is = am.open("blz.properties");
-		// } catch (IOException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-		//
-		// HBCIUtils.initDataStructures();
-		// try {
-		// HBCIUtils.refreshBLZList(is);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
-		// HBCIUtils.refreshBLZList(is);
-		//
-		// Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
-		// newKontoBenutzer, newKontoPin, newKontoTanmethod,
-		// newKontoFiltertyp, newKontoLocation, 1);
-		// kontostandAbrufen(vi);
+		EditText kontonummer = (EditText) findViewById(R.id.kontonummerneu);
+		newKontoKto = kontonummer.getText().toString();
+		EditText blz = (EditText) findViewById(R.id.blznummerneu);
+		newKontoBlz = blz.getText().toString();
+		EditText pin = (EditText) findViewById(R.id.pinnummerneu);
+		newKontoPin = pin.getText().toString();
+		EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
+		newKontoBenutzer = benutzerkennung.getText().toString();
 
+		// wird noch geändert
+		newKontoTanmethod = "911";
+		newKontoFiltertyp = "Base64";
+		newKontoLocation = "DE";
+
+		AssetManager am = getAssets();
+		InputStream is = null;
+		try {
+			is = am.open("blz.properties");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		HBCIUtils.initDataStructures();
+		try {
+			HBCIUtils.refreshBLZList(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		boolean check = false;
+		for (int j = 1; j <= 3; j++) {
+			if ((((LoginActivity.credentials
+					.getString("kontoGuthaben_" + j, "") == null || LoginActivity.credentials
+					.getString("kontoGuthaben_" + j, "") == "")))
+					&& check == false) {
+				Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
+						newKontoBenutzer, newKontoPin, newKontoTanmethod,
+						newKontoFiltertyp, newKontoLocation, j);
+				kontostandAbrufen(vi, j);
+				check = true;
+			}
+		}
+
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, MeineKonten.newInstance(1))
+				.addToBackStack(null).commit();
+		setBankCredentialsInView();
 	}
 
 	/**

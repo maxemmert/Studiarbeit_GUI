@@ -23,6 +23,8 @@ public class LoginActivity extends Activity {
 	private int progressBarStatus = 0;
 	private final Handler progressBarHandler = new Handler();
 	private long delay = 0;
+	// Speicher
+	public static SharedPreferences credentials;
 
 	// Create a session
 	static SharedPreferences sharedpreferences;
@@ -42,8 +44,8 @@ public class LoginActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		SharedPreferences credentials = getSharedPreferences(
-				NeuerAccount.MyCREDENTIALS, Context.MODE_PRIVATE);
+		credentials = getSharedPreferences(NeuerAccount.MyCREDENTIALS,
+				Context.MODE_PRIVATE);
 		sharedpreferences = getSharedPreferences(MyPREFERENCES,
 				Context.MODE_PRIVATE);
 		if (!credentials.contains(NeuerAccount.credentialsN)) {
