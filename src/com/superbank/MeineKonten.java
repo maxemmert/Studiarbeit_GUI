@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.superbank.R;
@@ -38,6 +39,13 @@ public class MeineKonten extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_meinekonten,
 				container, false);
+
+		TableLayout summentable = (TableLayout) rootView
+				.findViewById(R.id.gesamtsumme);
+		if (!MainActivity.summe.contains("-")) {
+			summentable.setBackgroundResource(R.color.green);
+		}
+
 		// 1.Konto
 		TextView kontostand1 = (TextView) rootView
 				.findViewById(R.id.kontostand1);

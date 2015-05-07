@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,16 +26,17 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 import com.example.superbank.R;
 
@@ -49,6 +51,7 @@ public class MainActivity extends Activity implements
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private PopupWindow pw;
+	private Dialog loadingDialog;
 	Context context;
 
 	public static String checkBeguenstigter;
@@ -105,6 +108,7 @@ public class MainActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setBankCredentialsInView();
+
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -510,16 +514,6 @@ public class MainActivity extends Activity implements
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, NeuesBankkonto.newInstance(1))
 				.addToBackStack(null).commit();
-
-		// Set Content of Spinner
-		// String[] Lands = { "DE", "EN" };
-		//
-		// Spinner landSpinner = (Spinner) findViewById(R.id.landspinner);
-		// ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
-		// android.R.layout.simple_spinner_item, Lands);
-		// spinnerAdapter
-		// .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// landSpinner.setAdapter(spinnerAdapter);
 	}
 
 	private void setBankCredentialsInView() {
@@ -565,6 +559,43 @@ public class MainActivity extends Activity implements
 				.valueOf(ktSt3.replace(" EUR", "")))) + " EUR";
 	}
 
+	// Lege neues Konto an und zeige Ladespinner
+	public void neuesKontoAnlegenUndSpinnerZeigen(final View vi)
+			throws IOException, InterruptedException {
+
+		// Loading Screen
+		Thread looper = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
+					LayoutParams darkenParams = (LayoutParams) darkenScreen
+							.getLayoutParams();
+					darkenParams.height = LayoutParams.MATCH_PARENT;
+					darkenParams.width = LayoutParams.MATCH_PARENT;
+					darkenScreen.setLayoutParams(darkenParams);
+
+					LayoutInflater inflater = (LayoutInflater) MainActivity.this
+							.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+					// Inflate the view from a predefined XML layout
+					View layout = inflater.inflate(
+							R.layout.popupwindow_spinner, null);
+					loadingDialog = new Dialog(getApplicationContext());
+					loadingDialog.getWindow().setType(
+							WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+					loadingDialog.addContentView(layout, darkenParams);
+					loadingDialog.setCancelable(false);
+					loadingDialog.show();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		looper.run();
+		neuesKontoHinzufuegen(vi);
+	}
+
 	// Neues Bankkonto syncen
 	public void neuesKontoHinzufuegen(View vi) throws IOException {
 
@@ -579,10 +610,12 @@ public class MainActivity extends Activity implements
 		EditText benutzerkennung = (EditText) findViewById(R.id.benutzerneu);
 		newKontoBenutzer = benutzerkennung.getText().toString();
 
-		// wird noch geändert
-		newKontoTanmethod = "911";
-		newKontoFiltertyp = "Base64";
-		newKontoLocation = "DE";
+		Spinner tanSpinner = (Spinner) findViewById(R.id.tanmethode_spinner);
+		newKontoTanmethod = tanSpinner.getSelectedItem().toString(); // 911
+		Spinner filterSpinner = (Spinner) findViewById(R.id.filtertypspinner);
+		newKontoFiltertyp = filterSpinner.getSelectedItem().toString(); // Base64
+		Spinner landSpinner = (Spinner) findViewById(R.id.landspinner);
+		newKontoLocation = landSpinner.getSelectedItem().toString(); // DE
 
 		AssetManager am = getAssets();
 		InputStream is = null;
@@ -613,7 +646,7 @@ public class MainActivity extends Activity implements
 				check = true;
 			}
 		}
-
+		loadingDialog.dismiss();
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, MeineKonten.newInstance(1))
@@ -642,41 +675,4 @@ public class MainActivity extends Activity implements
 		fm.popBackStack();
 	}
 
-	// Popup Spinner
-	private void initiatePopupWindow() {
-
-		try {
-			// Darken Layout
-			ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
-			LayoutParams darkenParams = (LayoutParams) darkenScreen
-					.getLayoutParams();
-			darkenParams.height = LayoutParams.MATCH_PARENT;
-			darkenParams.width = LayoutParams.MATCH_PARENT;
-			darkenScreen.setLayoutParams(darkenParams);
-
-			// We need to get the instance of the LayoutInflater, use the
-			// context of this activity
-			LayoutInflater inflater = (LayoutInflater) MainActivity.this
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			// Inflate the view from a predefined XML layout
-			View layout = inflater.inflate(R.layout.popupwindow_spinner, null);
-			pw = new PopupWindow(layout, 350, 250, true);
-			// display the popup in the center
-			pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void closePopupWindow() {
-		// Remove darken screen
-		ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
-		LayoutParams darkenParams = (LayoutParams) darkenScreen
-				.getLayoutParams();
-		darkenParams.height = 0;
-		darkenParams.width = 0;
-		darkenScreen.setLayoutParams(darkenParams);
-		// hide slider
-		pw.dismiss();
-	}
 }

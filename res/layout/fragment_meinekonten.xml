@@ -7,17 +7,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
+        <!-- Konto 1 -->
+
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/bankname1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_section1"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Header"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -25,50 +28,269 @@
             android:layout_marginLeft="0dp" >
 
             <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp" >
-
-                <TextView
-                    android:id="@+id/bank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sparkasse"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textStyle="bold" />
-
-                <ExpandableListView
-                    android:id="@+id/lvExp"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp" />
-
-                
-            </TableRow>
-
-            <TableRow
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" >
+                android:layout_marginLeft="10dp" >
+
+                <!-- Kontonummer Konto 1 -->
 
                 <TextView
-                    android:id="@+id/kontobezeichnung"
+                    android:id="@+id/kontonummer1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kontobezeichnung"
+                    android:text="kto"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                <EditText
-                    android:id="@+id/kontostand"
+                <TextView
+                    android:id="@+id/kontostand1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bgedittext"
-                    android:editable="false"
-                    android:ems="10"/>
+                    android:layout_marginLeft="40dp"
+                    android:text="stand"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/blz1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="blz"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+                     
+            </TableRow>
+
+           </TableLayout>
+           
+         <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp" >
+  
+              <Button
+                android:id="@+id/updatekonto1"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick=" "
+                android:text="Refresh"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="visible" />
+              
+              <Button
+                android:id="@+id/umsatzkonto1"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick=" "
+                android:text="Umsätze"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="visible" />
+             </TableRow>
+
+           </TableLayout>
+
+        <!-- Konto 1 ENDE -->
+
+        <View
+            android:id="@+id/trennstrich1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- Konto 2 -->
+
+        <TextView
+            android:id="@+id/bankname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Header"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <!-- Kontonummer Konto 2 -->
+
+                <TextView
+                    android:id="@+id/kontonummer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kto"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/kontostand2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:textStyle="bold"
+                    android:text="stand"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/blz2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="blz"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
         </TableLayout>
-        
+        <!-- Konto 2 ENDE -->
+
+        <View
+            android:id="@+id/trennstrich2"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- Konto 3 -->
+
+        <TextView
+            android:id="@+id/bankname3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Header"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <!-- Kontonummer Konto 2 -->
+
+                <TextView
+                    android:id="@+id/kontonummer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kto"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/kontostand3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:textStyle="bold"
+                    android:text="stand"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/blz3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="blz"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+        </TableLayout>
+        <!-- Konto 3 ENDE -->
+
+        <View
+            android:id="@+id/trennstrich3"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/darker_gray" />
+
+        <!-- SUMMENANSICHT -->
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/gesamtsumme"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#FF8000"
+            android:stretchColumns="1" >
+
+            <TableRow
+                android:id="@+id/tableRow100"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp" >
+
+                <TextView
+                    android:id="@+id/datum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="datum"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/summe"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="summeeeeeeeeeeeee"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/leer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="   "
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+        </TableLayout>
+
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"

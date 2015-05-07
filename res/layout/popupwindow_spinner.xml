@@ -3,7 +3,7 @@
     android:id="@+id/popup_element"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
+    android:background="#cccccc"
     android:orientation="vertical"
     android:padding="10px" >
 
@@ -19,6 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="synchronisiere..." />
+        android:text="Bitte warten. Synchronisation läuft." />
 
 </LinearLayout>
