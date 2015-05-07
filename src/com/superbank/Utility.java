@@ -239,6 +239,7 @@ public class Utility {
 		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_2");
 		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_3");
 		editor.remove("bankName" + "_" + intStr);
+		editor.commit();
 	}
 
 	/**

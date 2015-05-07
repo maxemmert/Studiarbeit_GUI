@@ -92,7 +92,7 @@
                 android:onClick=" "
                 android:text="Refresh"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:visibility="visible" />
+                android:visibility="invisible" />
               
               <Button
                 android:id="@+id/umsatzkonto1"
@@ -101,10 +101,10 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
                 android:background="@drawable/buttonbg"
-                android:onClick=" "
+                android:onClick="UmsatzKontoEins"
                 android:text="Umsätze"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:visibility="visible" />
+                android:visibility="invisible" />
              </TableRow>
 
            </TableLayout>
@@ -175,6 +175,44 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
         </TableLayout>
+        
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow46"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp" >
+  
+              <Button
+                android:id="@+id/updatekonto2"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick=" "
+                android:text="Refresh"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
+              
+              <Button
+                android:id="@+id/umsatzkonto2"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick="UmsatzKontoEins"
+                android:text="Umsätze"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
+             </TableRow>
+
+           </TableLayout>
         <!-- Konto 2 ENDE -->
 
         <View
@@ -241,6 +279,44 @@
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
         </TableLayout>
+        
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp" >
+  
+              <Button
+                android:id="@+id/updatekonto3"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick=" "
+                android:text="Refresh"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
+              
+              <Button
+                android:id="@+id/umsatzkonto3"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/buttonbg"
+                android:onClick="UmsatzKontoEins"
+                android:text="Umsätze"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:visibility="invisible" />
+             </TableRow>
+
+           </TableLayout>
         <!-- Konto 3 ENDE -->
 
         <View

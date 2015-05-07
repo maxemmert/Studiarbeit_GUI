@@ -84,7 +84,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1.0"
                     android:background="@drawable/buttonbg"
-                    android:onClick="neuesBankkontoAnlegen"
+                    android:onClick="bankkontoEntfernen"
                     android:text="Ein Bankkonto entfernen"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:visibility="visible" />

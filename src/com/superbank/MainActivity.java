@@ -31,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
@@ -393,7 +394,7 @@ public class MainActivity extends Activity implements
 									int which) {
 								// continue
 							}
-						}).setIcon(android.R.drawable.ic_dialog_alert).show();
+						}).setIcon(R.drawable.ic_launcher).show();
 	}
 
 	/**
@@ -594,6 +595,79 @@ public class MainActivity extends Activity implements
 
 		looper.run();
 		neuesKontoHinzufuegen(vi);
+	}
+
+	/**
+	 * Runs if the Entfernen Button is pressed in Kontoverwaltung
+	 * 
+	 * @param vi
+	 */
+	public void bankkontoEntfernen(View vi) {
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
+				MainActivity.this);
+		builderSingle.setIcon(R.drawable.ic_launcher);
+		builderSingle.setTitle("Konto auswählen");
+		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+				MainActivity.this, android.R.layout.select_dialog_singlechoice);
+
+		arrayAdapter.add(bankname1);
+		arrayAdapter.add(bankname2);
+		arrayAdapter.add(bankname3);
+		builderSingle.setNegativeButton("Abbrechen",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+
+		builderSingle.setAdapter(arrayAdapter,
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						String strName = arrayAdapter.getItem(which);
+						final int konto = which + 1;
+						AlertDialog.Builder builderInner = new AlertDialog.Builder(
+								MainActivity.this);
+						builderInner.setMessage(strName);
+						builderInner.setTitle("Ihre Auswahl:");
+						builderInner.setPositiveButton("Ok",
+								new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										Utility.deleteKonto(konto);
+										// to do
+										// if (konto == 2 &&
+										// LoginActivity.credentials.contains("hbciHost_1")
+										// &&
+										// LoginActivity.credentials.contains("hbciHost_3")){
+										// }
+										//
+										// if (konto == 1 ..
+
+										dialog.dismiss();
+									}
+								});
+						builderInner.show();
+					}
+				});
+		builderSingle.show();
+	}
+
+	/**
+	 * Runs if the Umsatz button of Konto1 is pressed
+	 * 
+	 * @param vi
+	 */
+	public void UmsatzKontoEins(View vi) {
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, Umsatzanzeige.newInstance(1))
+				.addToBackStack(null).commit();
 	}
 
 	// Neues Bankkonto syncen

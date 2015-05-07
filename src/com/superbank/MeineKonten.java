@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -47,21 +48,27 @@ public class MeineKonten extends Fragment {
 		}
 
 		// 1.Konto
-		TextView kontostand1 = (TextView) rootView
-				.findViewById(R.id.kontostand1);
-		kontostand1.setText(MainActivity.kontostand1);
-
-		TextView kontonummer1 = (TextView) rootView
-				.findViewById(R.id.kontonummer1);
-		kontonummer1.setText(MainActivity.kontonummer1);
-
-		TextView bankname1 = (TextView) rootView.findViewById(R.id.bankname1);
-		bankname1.setText(MainActivity.bankname1);
-
-		TextView blz1 = (TextView) rootView.findViewById(R.id.blz1);
-		blz1.setText(MainActivity.blz1);
-
 		if (LoginActivity.credentials.getString("bankName_1", "") != "") {
+			TextView kontostand1 = (TextView) rootView
+					.findViewById(R.id.kontostand1);
+			kontostand1.setText(MainActivity.kontostand1);
+
+			TextView kontonummer1 = (TextView) rootView
+					.findViewById(R.id.kontonummer1);
+			kontonummer1.setText(MainActivity.kontonummer1);
+
+			TextView bankname1 = (TextView) rootView
+					.findViewById(R.id.bankname1);
+			bankname1.setText(MainActivity.bankname1);
+
+			TextView blz1 = (TextView) rootView.findViewById(R.id.blz1);
+			blz1.setText(MainActivity.blz1);
+
+			Button update1 = (Button) rootView.findViewById(R.id.updatekonto1);
+			update1.setVisibility(View.VISIBLE);
+			Button umsatz1 = (Button) rootView.findViewById(R.id.umsatzkonto1);
+			umsatz1.setVisibility(View.VISIBLE);
+
 			android.view.ViewGroup.LayoutParams lp;
 			View trennstrich1 = rootView.findViewById(R.id.trennstrich1);
 			lp = trennstrich1.getLayoutParams();
@@ -71,20 +78,27 @@ public class MeineKonten extends Fragment {
 		// 1. Konto Ende
 
 		// 2.Konto
-		TextView kontostand2 = (TextView) rootView
-				.findViewById(R.id.kontostand2);
-		kontostand2.setText(MainActivity.kontostand2);
-
-		TextView kontonummer2 = (TextView) rootView
-				.findViewById(R.id.kontonummer2);
-		kontonummer2.setText(MainActivity.kontonummer2);
-
-		TextView bankname2 = (TextView) rootView.findViewById(R.id.bankname2);
-		bankname2.setText(MainActivity.bankname2);
-
-		TextView blz2 = (TextView) rootView.findViewById(R.id.blz2);
-		blz2.setText(MainActivity.blz2);
 		if (LoginActivity.credentials.getString("bankName_2", "") != "") {
+			TextView kontostand2 = (TextView) rootView
+					.findViewById(R.id.kontostand2);
+			kontostand2.setText(MainActivity.kontostand2);
+
+			TextView kontonummer2 = (TextView) rootView
+					.findViewById(R.id.kontonummer2);
+			kontonummer2.setText(MainActivity.kontonummer2);
+
+			TextView bankname2 = (TextView) rootView
+					.findViewById(R.id.bankname2);
+			bankname2.setText(MainActivity.bankname2);
+
+			TextView blz2 = (TextView) rootView.findViewById(R.id.blz2);
+			blz2.setText(MainActivity.blz2);
+
+			Button update2 = (Button) rootView.findViewById(R.id.updatekonto2);
+			update2.setVisibility(View.VISIBLE);
+			Button umsatz2 = (Button) rootView.findViewById(R.id.umsatzkonto2);
+			umsatz2.setVisibility(View.VISIBLE);
+
 			android.view.ViewGroup.LayoutParams lp;
 			View trennstrich2 = rootView.findViewById(R.id.trennstrich2);
 			lp = trennstrich2.getLayoutParams();
@@ -94,20 +108,27 @@ public class MeineKonten extends Fragment {
 		// 2. Konto Ende
 
 		// 3.Konto
-		TextView kontostand3 = (TextView) rootView
-				.findViewById(R.id.kontostand3);
-		kontostand3.setText(MainActivity.kontostand3);
-
-		TextView kontonummer3 = (TextView) rootView
-				.findViewById(R.id.kontonummer3);
-		kontonummer3.setText(MainActivity.kontonummer3);
-
-		TextView bankname3 = (TextView) rootView.findViewById(R.id.bankname3);
-		bankname3.setText(MainActivity.bankname3);
-
-		TextView blz3 = (TextView) rootView.findViewById(R.id.blz3);
-		blz3.setText(MainActivity.blz3);
 		if (LoginActivity.credentials.getString("bankName_3", "") != "") {
+			TextView kontostand3 = (TextView) rootView
+					.findViewById(R.id.kontostand3);
+			kontostand3.setText(MainActivity.kontostand3);
+
+			TextView kontonummer3 = (TextView) rootView
+					.findViewById(R.id.kontonummer3);
+			kontonummer3.setText(MainActivity.kontonummer3);
+
+			TextView bankname3 = (TextView) rootView
+					.findViewById(R.id.bankname3);
+			bankname3.setText(MainActivity.bankname3);
+
+			TextView blz3 = (TextView) rootView.findViewById(R.id.blz3);
+			blz3.setText(MainActivity.blz3);
+
+			Button update3 = (Button) rootView.findViewById(R.id.updatekonto3);
+			update3.setVisibility(View.VISIBLE);
+			Button umsatz3 = (Button) rootView.findViewById(R.id.umsatzkonto3);
+			umsatz3.setVisibility(View.VISIBLE);
+
 			android.view.ViewGroup.LayoutParams lp;
 			View trennstrich3 = rootView.findViewById(R.id.trennstrich3);
 			lp = trennstrich3.getLayoutParams();
