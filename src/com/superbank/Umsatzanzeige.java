@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.superbank.R;
@@ -36,6 +38,17 @@ public class Umsatzanzeige extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_umsatzanzeige,
 				container, false);
 		((MainActivity) getActivity()).setTitle("Umsatzanzeige");
+
+		Spinner kontowahl = (Spinner) rootView.findViewById(R.id.kontospinner);
+
+		ArrayAdapter<CharSequence> kontoauswahlAdapter = ArrayAdapter
+				.createFromResource(getActivity().getBaseContext(),
+						R.array.land_spinner_items,
+						android.R.layout.simple_spinner_item);
+		kontoauswahlAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		kontowahl.setAdapter(kontoauswahlAdapter);
+
 		TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
 		money.setText(LoginActivity.credentials.getString(
 				"transaction_1_1_money", ""));
