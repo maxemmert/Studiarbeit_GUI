@@ -752,4 +752,18 @@ public class MainActivity extends Activity implements
 		fm.popBackStack();
 	}
 
+	public void notimplemented(View vi) {
+		new AlertDialog.Builder(this)
+				.setTitle("Meldung")
+				.setMessage("Diese Funktion ist zurzeit nicht implementiert.")
+				.setNeutralButton(android.R.string.ok,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// dismiss
+							}
+						}).setIcon(R.drawable.ic_launcher).show();
+
+	}
 }

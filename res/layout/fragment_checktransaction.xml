@@ -47,23 +47,14 @@
             android:contentDescription="progressbar"
             android:src="@drawable/transaction_progress_two" />
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_section9"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
+         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/ueberweisung_headline1"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="italic|bold" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView15"
@@ -71,8 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/ueberweisung_beguenstigter"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="italic|bold" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -234,7 +225,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
                 android:background="@drawable/buttonbg"
-                android:onClick="ueberweisungFortfahren"
+                android:onClick="notimplemented"
                 android:text="@string/ueberweisung_weiter"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>

@@ -35,7 +35,7 @@ public class Umsatzanzeige extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_umsatzanzeige,
 				container, false);
-
+		((MainActivity) getActivity()).setTitle("Umsatzanzeige");
 		TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
 		money.setText(LoginActivity.credentials.getString(
 				"transaction_1_1_money", ""));
