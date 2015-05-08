@@ -591,7 +591,7 @@ public class MainActivity extends Activity implements
 			public void run() {
 				try {
 					neuesKontoHinzufuegen(vi);
-					// loadingDialog.dismiss();
+					loadingDialog.dismiss();
 					System.out.println("konto adden");
 
 				} catch (IOException e) {
@@ -599,7 +599,6 @@ public class MainActivity extends Activity implements
 				}
 			}
 		});
-		loadingDialog.dismiss();
 		syncKto.run();
 
 	}
