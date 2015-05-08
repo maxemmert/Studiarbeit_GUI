@@ -47,23 +47,32 @@
             android:contentDescription="progressbar"
             android:src="@drawable/transaction_progress_one" />
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_section3"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
+         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/ueberweisung_headline1"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="italic|bold" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+         <RadioButton
+             android:id="@+id/radiokonto1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:visibility="invisible"/>
+         
+         <RadioButton
+             android:id="@+id/radiokonto2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:visibility="invisible"/>
+         
+         <RadioButton
+             android:id="@+id/radiokonto3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/textView15"
@@ -71,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/ueberweisung_beguenstigter"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="italic|bold" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="match_parent"
