@@ -11,14 +11,70 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/umsatzmoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:layout_marginTop="20dp"
-            android:text="@string/title_section2"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
+            android:text="money"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+         <TextView
+            android:id="@+id/umsatzdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="date"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+         
+         <TextView
+            android:id="@+id/umsatzcounterAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="counteracc"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+         <TextView
+            android:id="@+id/umsatztransactiontext0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="umsatztransactiontext0"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+         
+         <TextView
+            android:id="@+id/umsatztransactiontext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="umsatztransactiontext1"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+         
+         <TextView
+            android:id="@+id/umsatztransactiontext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="umsatztransactiontext2"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+         
+         <TextView
+            android:id="@+id/umsatztransactiontext3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="20dp"
+            android:text="umsatztransactiontext3"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        
+        
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"

@@ -109,7 +109,6 @@ public class MainActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setBankCredentialsInView();
-
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -565,36 +564,44 @@ public class MainActivity extends Activity implements
 			throws IOException, InterruptedException {
 
 		// Loading Screen
-		Thread looper = new Thread(new Runnable() {
+		try {
+			ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
+			LayoutParams darkenParams = (LayoutParams) darkenScreen
+					.getLayoutParams();
+			darkenParams.height = LayoutParams.MATCH_PARENT;
+			darkenParams.width = LayoutParams.MATCH_PARENT;
+			darkenScreen.setLayoutParams(darkenParams);
+
+			LayoutInflater inflater = (LayoutInflater) MainActivity.this
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			// Inflate the view from a predefined XML layout
+			View layout = inflater.inflate(R.layout.popupwindow_spinner, null);
+			loadingDialog = new Dialog(getApplicationContext());
+			loadingDialog.getWindow().setType(
+					WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+			loadingDialog.addContentView(layout, darkenParams);
+			loadingDialog.setCancelable(false);
+			loadingDialog.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Thread syncKto = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					ImageView darkenScreen = (ImageView) findViewById(R.id.darkenScreen);
-					LayoutParams darkenParams = (LayoutParams) darkenScreen
-							.getLayoutParams();
-					darkenParams.height = LayoutParams.MATCH_PARENT;
-					darkenParams.width = LayoutParams.MATCH_PARENT;
-					darkenScreen.setLayoutParams(darkenParams);
+					neuesKontoHinzufuegen(vi);
+					// loadingDialog.dismiss();
+					System.out.println("konto adden");
 
-					LayoutInflater inflater = (LayoutInflater) MainActivity.this
-							.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-					// Inflate the view from a predefined XML layout
-					View layout = inflater.inflate(
-							R.layout.popupwindow_spinner, null);
-					loadingDialog = new Dialog(getApplicationContext());
-					loadingDialog.getWindow().setType(
-							WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-					loadingDialog.addContentView(layout, darkenParams);
-					loadingDialog.setCancelable(false);
-					loadingDialog.show();
-				} catch (Exception e) {
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		loadingDialog.dismiss();
+		syncKto.run();
 
-		looper.run();
-		neuesKontoHinzufuegen(vi);
 	}
 
 	/**
@@ -640,6 +647,13 @@ public class MainActivity extends Activity implements
 									public void onClick(DialogInterface dialog,
 											int which) {
 										Utility.deleteKonto(konto);
+										if (konto == 1) {
+											kontostand1 = "0.0";
+										} else if (konto == 2) {
+											kontostand2 = "0.0";
+										} else
+											kontostand3 = "0.0";
+
 										dialog.dismiss();
 									}
 								});
@@ -711,7 +725,6 @@ public class MainActivity extends Activity implements
 				check = true;
 			}
 		}
-		loadingDialog.dismiss();
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, MeineKonten.newInstance(1))
