@@ -599,7 +599,7 @@ public class MainActivity extends Activity implements
 				}
 			}
 		});
-		syncKto.run();
+		syncKto.start();
 
 	}
 
