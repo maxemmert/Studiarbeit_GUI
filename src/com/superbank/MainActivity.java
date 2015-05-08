@@ -640,15 +640,6 @@ public class MainActivity extends Activity implements
 									public void onClick(DialogInterface dialog,
 											int which) {
 										Utility.deleteKonto(konto);
-										// to do
-										// if (konto == 2 &&
-										// LoginActivity.credentials.contains("hbciHost_1")
-										// &&
-										// LoginActivity.credentials.contains("hbciHost_3")){
-										// }
-										//
-										// if (konto == 1 ..
-
 										dialog.dismiss();
 									}
 								});

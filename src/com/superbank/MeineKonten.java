@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -64,9 +64,11 @@ public class MeineKonten extends Fragment {
 			TextView blz1 = (TextView) rootView.findViewById(R.id.blz1);
 			blz1.setText(MainActivity.blz1);
 
-			Button update1 = (Button) rootView.findViewById(R.id.updatekonto1);
+			ImageView update1 = (ImageView) rootView
+					.findViewById(R.id.updatekonto1);
 			update1.setVisibility(View.VISIBLE);
-			Button umsatz1 = (Button) rootView.findViewById(R.id.umsatzkonto1);
+			ImageView umsatz1 = (ImageView) rootView
+					.findViewById(R.id.umsatzkonto1);
 			umsatz1.setVisibility(View.VISIBLE);
 
 			android.view.ViewGroup.LayoutParams lp;
@@ -94,9 +96,11 @@ public class MeineKonten extends Fragment {
 			TextView blz2 = (TextView) rootView.findViewById(R.id.blz2);
 			blz2.setText(MainActivity.blz2);
 
-			Button update2 = (Button) rootView.findViewById(R.id.updatekonto2);
+			ImageView update2 = (ImageView) rootView
+					.findViewById(R.id.updatekonto2);
 			update2.setVisibility(View.VISIBLE);
-			Button umsatz2 = (Button) rootView.findViewById(R.id.umsatzkonto2);
+			ImageView umsatz2 = (ImageView) rootView
+					.findViewById(R.id.umsatzkonto2);
 			umsatz2.setVisibility(View.VISIBLE);
 
 			android.view.ViewGroup.LayoutParams lp;
@@ -124,9 +128,11 @@ public class MeineKonten extends Fragment {
 			TextView blz3 = (TextView) rootView.findViewById(R.id.blz3);
 			blz3.setText(MainActivity.blz3);
 
-			Button update3 = (Button) rootView.findViewById(R.id.updatekonto3);
+			ImageView update3 = (ImageView) rootView
+					.findViewById(R.id.updatekonto3);
 			update3.setVisibility(View.VISIBLE);
-			Button umsatz3 = (Button) rootView.findViewById(R.id.umsatzkonto3);
+			ImageView umsatz3 = (ImageView) rootView
+					.findViewById(R.id.umsatzkonto3);
 			umsatz3.setVisibility(View.VISIBLE);
 
 			android.view.ViewGroup.LayoutParams lp;
