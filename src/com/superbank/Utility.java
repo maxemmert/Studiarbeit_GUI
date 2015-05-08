@@ -30,7 +30,7 @@ import org.w3c.dom.NodeList;
 
 import android.content.SharedPreferences.Editor;
 
-//		Diese Credentials werden für jedes konto i(intStr) gesetzt. 
+//		Diese Credentials werden fï¿½r jedes konto i(intStr) gesetzt. 
 //
 // 		"hbciHost" + "_" + intStr
 //		"hbciServletUrl" + "_" + intStr
@@ -146,14 +146,14 @@ public class Utility {
 			int i = 0;
 			while (i < 10 && transactionIterator.hasNext()) {
 				Transaction currentTransaction = transactionIterator.next();
-				// Hole Überweisungsbetrag
+				// Hole ï¿½berweisungsbetrag
 				Money money = currentTransaction.getBalance();
-				// Hole Überweisungsdatum
+				// Hole ï¿½berweisungsdatum
 				Date date = currentTransaction.getBookingDate();
 				// Hole Zielaccount bzw. "Gegenaccount"
 				AccountReference counterAccount = currentTransaction
 						.getCounterAccount();
-				// Hole Überweisungstext als List<String> KP OB ES FUNZT!
+				// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
 				List<String> textList = currentTransaction.getUsageLines();
 			}
 
@@ -196,7 +196,7 @@ public class Utility {
 	}
 
 	/**
-	 * Gibt den Banknamen anhand der blz zurück
+	 * Gibt den Banknamen anhand der blz zurï¿½ck
 	 * 
 	 * @param blz
 	 * @return name der bank+ort
@@ -210,7 +210,7 @@ public class Utility {
 	}
 
 	/**
-	 * Löscht alle credentials zu dem konto i. Danach sollte man durch
+	 * Lï¿½scht alle credentials zu dem konto i. Danach sollte man durch
 	 * aktualisieren der Page die Konto-Liste aktualisieren.
 	 * 
 	 * @param i
@@ -219,6 +219,7 @@ public class Utility {
 	public static void deleteKonto(int i) {
 		String intStr = String.valueOf(i);
 		Editor editor = LoginActivity.credentials.edit();
+		editor.remove("kontoGuthaben" + "_" + intStr);
 		editor.remove("hbciHost" + "_" + intStr);
 		editor.remove("hbciServletUrl" + "_" + intStr);
 		editor.remove("hbciHostVersion" + "_" + intStr);
@@ -243,7 +244,7 @@ public class Utility {
 	}
 
 	/**
-	 * Werte werden als Credentials gespeichert. Für konto i zb hbciHost_1. wir
+	 * Werte werden als Credentials gespeichert. Fï¿½r konto i zb hbciHost_1. wir
 	 * gehen mal davon aus, dass niemand einen benutzernamen oder ein passwort
 	 * haben, die auf _1 enden.
 	 * 
@@ -306,8 +307,8 @@ public class Utility {
 	}
 
 	/**
-	 * Gibt false zurück, wenn beim Abfragen des kontostands etwas schief geht.
-	 * Gibt true zurück, wenn alles gut ging und setzt die credentials für
+	 * Gibt false zurï¿½ck, wenn beim Abfragen des kontostands etwas schief geht.
+	 * Gibt true zurï¿½ck, wenn alles gut ging und setzt die credentials fï¿½r
 	 * umsatz und transaktionen.
 	 * 
 	 * @param w3cDoc
@@ -390,12 +391,12 @@ public class Utility {
 					Editor editor = LoginActivity.credentials.edit();
 
 					Transaction currentTransaction = transactionIterator.next();
-					// Hole Überweisungsbetrag
+					// Hole ï¿½berweisungsbetrag
 					Money money = currentTransaction.getBalance();
 					editor.putString("transaction" + "_" + String.valueOf(j)
 							+ "_" + String.valueOf(i) + "_" + "money",
 							money.toString());
-					// Hole Überweisungsdatum
+					// Hole ï¿½berweisungsdatum
 					Date date = currentTransaction.getBookingDate();
 					editor.putString("transaction" + "_" + String.valueOf(j)
 							+ "_" + String.valueOf(i) + "_" + "date",
@@ -407,7 +408,7 @@ public class Utility {
 					editor.putString("transaction" + "_" + String.valueOf(j)
 							+ "_" + String.valueOf(i) + "_" + "counterAccount",
 							counterAccount.getName());
-					// Hole Überweisungstext als List<String> KP OB ES FUNZT!
+					// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
 					List<String> textList = currentTransaction.getUsageLines();
 					if (textList != null) {
 						if (textList.get(0) != null) {
