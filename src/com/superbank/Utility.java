@@ -16,6 +16,7 @@ import name.studiarbeit.hbci.Transactions;
 import name.studiarbeit.hbci.impl.HbciAccount;
 import name.studiarbeit.hbci.impl.HbciCredentials;
 import name.studiarbeit.hbci.impl.HbciSession;
+import name.studiarbeit.hbci.impl.HbciTransactions;
 import name.studiarbeit.hbci.impl.HbciVersion;
 
 import org.dom4j.DocumentException;
@@ -30,7 +31,7 @@ import org.w3c.dom.NodeList;
 
 import android.content.SharedPreferences.Editor;
 
-//		Diese Credentials werden f�r jedes konto i(intStr) gesetzt. 
+//		Diese Credentials werden fï¿½r jedes konto i(intStr) gesetzt. 
 //
 // 		"hbciHost" + "_" + intStr
 //		"hbciServletUrl" + "_" + intStr
@@ -146,14 +147,14 @@ public class Utility {
 			int i = 0;
 			while (i < 10 && transactionIterator.hasNext()) {
 				Transaction currentTransaction = transactionIterator.next();
-				// Hole �berweisungsbetrag
+				// Hole ï¿½berweisungsbetrag
 				Money money = currentTransaction.getBalance();
-				// Hole �berweisungsdatum
+				// Hole ï¿½berweisungsdatum
 				Date date = currentTransaction.getBookingDate();
 				// Hole Zielaccount bzw. "Gegenaccount"
 				AccountReference counterAccount = currentTransaction
 						.getCounterAccount();
-				// Hole �berweisungstext als List<String> KP OB ES FUNZT!
+				// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
 				List<String> textList = currentTransaction.getUsageLines();
 			}
 
@@ -196,7 +197,7 @@ public class Utility {
 	}
 
 	/**
-	 * Gibt den Banknamen anhand der blz zur�ck
+	 * Gibt den Banknamen anhand der blz zurï¿½ck
 	 * 
 	 * @param blz
 	 * @return name der bank+ort
@@ -210,7 +211,7 @@ public class Utility {
 	}
 
 	/**
-	 * L�scht alle credentials zu dem konto i. Danach sollte man durch
+	 * Lï¿½scht alle credentials zu dem konto i. Danach sollte man durch
 	 * aktualisieren der Page die Konto-Liste aktualisieren.
 	 * 
 	 * @param i
@@ -244,9 +245,9 @@ public class Utility {
 	}
 
 	/**
-	 * Werte werden als Credentials gespeichert. F�r konto i zb hbciHost_1. wir
-	 * gehen mal davon aus, dass niemand einen benutzernamen oder ein passwort
-	 * haben, die auf _1 enden.
+	 * Werte werden als Credentials gespeichert. Fï¿½r konto i zb hbciHost_1.
+	 * wir gehen mal davon aus, dass niemand einen benutzernamen oder ein
+	 * passwort haben, die auf _1 enden.
 	 * 
 	 * @param blz
 	 * @param i
@@ -307,8 +308,8 @@ public class Utility {
 	}
 
 	/**
-	 * Aktualisiert für Konto i den Kontostand in den Credentials. Die
-	 * Benutzeroberfläche muss dann natürlich noch aktualisiert werden, sobald
+	 * Aktualisiert fÃ¼r Konto i den Kontostand in den Credentials. Die
+	 * BenutzeroberflÃ¤che muss dann natÃ¼rlich noch aktualisiert werden, sobald
 	 * diese funktion aufgerufen wurde.
 	 * 
 	 * @param w3cDoc
@@ -396,9 +397,9 @@ public class Utility {
 	}
 
 	/**
-	 * Gibt false zur�ck, wenn beim Abfragen des kontostands etwas schief geht.
-	 * Gibt true zur�ck, wenn alles gut ging und setzt die credentials f�r
-	 * umsatz und transaktionen.
+	 * Gibt false zurï¿½ck, wenn beim Abfragen des kontostands etwas schief
+	 * geht. Gibt true zurï¿½ck, wenn alles gut ging und setzt die credentials
+	 * fï¿½r umsatz und transaktionen.
 	 * 
 	 * @param w3cDoc
 	 * @param i
@@ -462,76 +463,12 @@ public class Utility {
 			session.logIn();
 
 			session.acquireBalance();
-
+			Balance balance = a.getBalance();
 			session.acquireTransactions();
 
 			Transactions transactions = a.getTransactions();
-
-			Balance balance = a.getBalance();
-
-			if (transactions != null) {
-
-				Iterator<Transaction> transactionIterator = transactions
-						.getIterator();
-
-				// transaction_j_i j=transaktion 1-10 i=konto 1-3
-				int j = 0;
-				while (j < 10 && transactionIterator.hasNext()) {
-					Editor editor = LoginActivity.credentials.edit();
-
-					Transaction currentTransaction = transactionIterator.next();
-					// Hole �berweisungsbetrag
-					Money money = currentTransaction.getBalance();
-					editor.putString("transaction" + "_" + String.valueOf(j)
-							+ "_" + String.valueOf(i) + "_" + "money",
-							money.toString());
-					// Hole �berweisungsdatum
-					Date date = currentTransaction.getBookingDate();
-					editor.putString("transaction" + "_" + String.valueOf(j)
-							+ "_" + String.valueOf(i) + "_" + "date",
-							date.toGMTString());
-					// Hole Zielaccount bzw. "Gegenaccount"
-
-					AccountReference counterAccount = currentTransaction
-							.getCounterAccount();
-					editor.putString("transaction" + "_" + String.valueOf(j)
-							+ "_" + String.valueOf(i) + "_" + "counterAccount",
-							counterAccount.getName());
-					// Hole �berweisungstext als List<String> KP OB ES FUNZT!
-					List<String> textList = currentTransaction.getUsageLines();
-					if (textList != null) {
-						if (textList.get(0) != null) {
-							editor.putString(
-									"transaction" + "_" + String.valueOf(j)
-											+ "_" + String.valueOf(i) + "_"
-											+ "transactionText_0",
-									textList.get(0));
-						}
-						if (textList.get(1) != null) {
-							editor.putString(
-									"transaction" + "_" + String.valueOf(j)
-											+ "_" + String.valueOf(i) + "_"
-											+ "transactionText_1",
-									textList.get(1));
-						}
-						if (textList.get(2) != null) {
-							editor.putString(
-									"transaction" + "_" + String.valueOf(j)
-											+ "_" + String.valueOf(i) + "_"
-											+ "transactionText_2",
-									textList.get(2));
-						}
-						if (textList.get(3) != null) {
-							editor.putString(
-									"transaction" + "_" + String.valueOf(j)
-											+ "_" + String.valueOf(i) + "_"
-											+ "transactionText_3",
-									textList.get(3));
-						}
-					}
-					editor.commit();
-				}
-			}
+			HbciTransactions hbciTransactions = (HbciTransactions) transactions;
+			handleTransactions(hbciTransactions, i);
 
 			// Timestamp und Money vom Balance-Objekt holen
 			if (balance != null) {
@@ -548,6 +485,59 @@ public class Utility {
 			return false;
 		}
 		return true;
+	}
+
+	private static void handleTransactions(HbciTransactions hbciTransactions,
+			int j) {
+
+		if (hbciTransactions == null) {
+			return;
+		}
+		Editor editor = LoginActivity.credentials.edit();
+		for (int i = 1; i <= 10; i++) {
+			Transaction transaction = hbciTransactions.transactions
+					.get(hbciTransactions.transactions.size() - i);
+			// Hole ï¿½berweisungsbetrag
+			Money money = transaction.getBalance();
+			editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+					+ String.valueOf(j) + "_" + "money", money.toString());
+			// Hole ï¿½berweisungsdatum
+			Date date = transaction.getBookingDate();
+			editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+					+ String.valueOf(j) + "_" + "date", date.toGMTString());
+			// Hole Zielaccount bzw. "Gegenaccount"
+
+			AccountReference counterAccount = transaction.getCounterAccount();
+			editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+					+ String.valueOf(j) + "_" + "counterAccount",
+					counterAccount.getName());
+			// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
+			List<String> textList = transaction.getUsageLines();
+			if (textList != null) {
+				if (textList.get(0) != null) {
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + String.valueOf(j) + "_"
+							+ "transactionText_0", textList.get(0));
+				}
+				if (textList.get(1) != null) {
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + String.valueOf(j) + "_"
+							+ "transactionText_1", textList.get(1));
+				}
+				if (textList.get(2) != null) {
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + String.valueOf(j) + "_"
+							+ "transactionText_2", textList.get(2));
+				}
+				if (textList.get(3) != null) {
+					editor.putString("transaction" + "_" + String.valueOf(i)
+							+ "_" + String.valueOf(j) + "_"
+							+ "transactionText_3", textList.get(3));
+				}
+
+			}
+		}
+		editor.commit();
 	}
 
 }
