@@ -307,6 +307,95 @@ public class Utility {
 	}
 
 	/**
+	 * Aktualisiert für Konto i den Kontostand in den Credentials. Die
+	 * Benutzeroberfläche muss dann natürlich noch aktualisiert werden, sobald
+	 * diese funktion aufgerufen wurde.
+	 * 
+	 * @param w3cDoc
+	 * @param i
+	 * @param pintanEnabled
+	 * @return
+	 */
+	public static boolean refreshKontostandByCredentials(Document w3cDoc,
+			int i, boolean pintanEnabled) {
+		try {
+			HbciAccount a = new HbciAccount(
+					LoginActivity.credentials.getString("kontoUsername" + "_"
+							+ i, ""), LoginActivity.credentials.getString(
+							"bankleitzahl" + "_" + i, ""), w3cDoc);
+			if (pintanEnabled) {
+				String url = LoginActivity.credentials.getString(
+						"hbciServletUrlVersion" + "_" + i, "");
+				a.setVersion(getVersionByString(url));
+			} else {
+				String url = LoginActivity.credentials.getString(
+						"hbciHostVersion" + "_" + i, "");
+				a.setVersion(getVersionByString(url));
+			}
+
+			a.setCredentials(new HbciCredentials());
+			a.setAccountNumber(LoginActivity.credentials.getString(
+					"kontoNummer" + "_" + i, "")); // TODO: kann man bestimmt
+													// wieder
+													// rausnehmen!!
+
+			a.getCredentials().setPin(
+					LoginActivity.credentials.getString(
+							"kontoPasswd" + "_" + i, ""));
+
+			HbciSession session = (HbciSession) a.createHbciSession();
+
+			String blz = LoginActivity.credentials.getString("bankleitzahl"
+					+ "_" + i, "");
+			String country = LoginActivity.credentials.getString(
+					"laenderKennung" + "_" + i, "");
+			String userId = LoginActivity.credentials.getString("kontoUsername"
+					+ "_" + i, "");
+			int port = 443;
+			String filterType = LoginActivity.credentials.getString("filterTyp"
+					+ "_" + i, "");
+
+			String host = "";
+			if (pintanEnabled) {
+				host = LoginActivity.credentials.getString("hbciServletUrl"
+						+ "_" + i, "");
+			} else {
+				host = LoginActivity.credentials.getString(
+						"hbciHost" + "_" + i, "");
+			}
+			String currentTanMethod = LoginActivity.credentials.getString(
+					"currentTanMethod" + "_" + i, "");
+			session.setCredentials(blz, country, userId, port, filterType,
+					host, currentTanMethod);
+
+			session.setPassportPath(null);
+
+			session.logIn();
+
+			session.acquireBalance();
+
+			session.acquireTransactions();
+
+			Balance balance = a.getBalance();
+
+			// Timestamp und Money vom Balance-Objekt holen
+			if (balance != null) {
+				Money money = balance.getAvailable();
+
+				Editor editor = LoginActivity.credentials.edit();
+				editor.putString("kontoGuthaben" + "_" + String.valueOf(i),
+						money.toString());
+				editor.commit();
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Gibt false zur�ck, wenn beim Abfragen des kontostands etwas schief geht.
 	 * Gibt true zur�ck, wenn alles gut ging und setzt die credentials f�r
 	 * umsatz und transaktionen.
