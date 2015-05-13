@@ -899,6 +899,15 @@ public class MainActivity extends Activity implements
 	// }
 
 	/**
+	 * Runs if the neue Sperrrufnummer anlegen button is pressed
+	 * 
+	 * @param vi
+	 */
+	public void neueSperrrufnummerAnlegen(View vi) {
+		notimplemented(vi);
+	}
+
+	/**
 	 * Runs, if the Go Back button is clicked in CheckTransaction
 	 * 
 	 * @param vi
