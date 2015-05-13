@@ -1,5 +1,8 @@
 package com.superbank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -39,15 +42,28 @@ public class Umsatzanzeige extends Fragment {
 				container, false);
 		((MainActivity) getActivity()).setTitle("Umsatzanzeige");
 
-		Spinner kontowahl = (Spinner) rootView.findViewById(R.id.kontospinner);
+		List<String> spinnerArray = new ArrayList<String>();
 
-		ArrayAdapter<CharSequence> kontoauswahlAdapter = ArrayAdapter
-				.createFromResource(getActivity().getBaseContext(),
-						R.array.land_spinner_items,
-						android.R.layout.simple_spinner_item);
-		kontoauswahlAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		kontowahl.setAdapter(kontoauswahlAdapter);
+		if (LoginActivity.credentials.getString("bankName_1", "") != "") {
+			spinnerArray.add(LoginActivity.credentials.getString("bankName_1",
+					""));
+		}
+		if (LoginActivity.credentials.getString("bankName_2", "") != "") {
+			spinnerArray.add(LoginActivity.credentials.getString("bankName_2",
+					""));
+		}
+		if (LoginActivity.credentials.getString("bankName_3", "") != "") {
+			spinnerArray.add(LoginActivity.credentials.getString("bankName_3",
+					""));
+		}
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity()
+				.getBaseContext(), android.R.layout.simple_spinner_item,
+				spinnerArray);
+
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		Spinner sItems = (Spinner) rootView.findViewById(R.id.kontospinner);
+		sItems.setAdapter(adapter);
 
 		TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
 		money.setText(LoginActivity.credentials.getString(
