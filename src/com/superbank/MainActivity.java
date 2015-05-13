@@ -519,7 +519,6 @@ public class MainActivity extends Activity implements
 	}
 
 	private void setBankCredentialsInView() {
-
 		// 1.Konto
 		kontostand1 = LoginActivity.credentials
 				.getString("kontoGuthaben_1", "").replace("[", "")
@@ -559,6 +558,7 @@ public class MainActivity extends Activity implements
 		summe = String.valueOf((Double.valueOf(ktSt1.replace(" EUR", ""))
 				+ Double.valueOf(ktSt2.replace(" EUR", "")) + Double
 				.valueOf(ktSt3.replace(" EUR", "")))) + " EUR";
+
 	}
 
 	// Lege neues Konto an und zeige Ladespinner
@@ -725,6 +725,7 @@ public class MainActivity extends Activity implements
 			}
 		});
 		updateKto1.start();
+		setBankCredentialsInView();
 	}
 
 	/**
@@ -809,11 +810,11 @@ public class MainActivity extends Activity implements
 				check = true;
 			}
 		}
+		setBankCredentialsInView();
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, MeineKonten.newInstance(1))
 				.addToBackStack(null).commit();
-		setBankCredentialsInView();
 	}
 
 	/**

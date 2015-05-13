@@ -43,6 +43,9 @@ public class MeineKonten extends Fragment {
 
 		TableLayout summentable = (TableLayout) rootView
 				.findViewById(R.id.gesamtsumme);
+		if (!MainActivity.summe.equals("0.0 EUR")) {
+			summentable.setBackgroundResource(R.color.orange);
+		}
 		if (!MainActivity.summe.contains("-")) {
 			summentable.setBackgroundResource(R.color.green);
 		}
