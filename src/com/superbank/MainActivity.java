@@ -746,8 +746,37 @@ public class MainActivity extends Activity implements
 	 * @param vi
 	 */
 	public void UpdateKontoZwei(View vi) {
-		// to DO
-		Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 2, true);
+		final TextView kontostandView2 = (TextView) findViewById(R.id.kontostand2);
+		// synchronising Screen
+		try {
+
+			kontostandView2.setText("[synchronisiere...]");
+			kontostandView2.setTextColor(Color.GREEN);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Thread updateKto2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				// falls nicht geht, Zeile kommentieren
+				Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 2,
+						true);
+				System.out.println("konto2 update");
+				FragmentManager fragmentManager = getFragmentManager();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, MeineKonten.newInstance(1))
+						.addToBackStack(null).commit();
+			}
+		});
+		updateKto2.start();
+		setBankCredentialsInView();
 	}
 
 	/**
@@ -756,8 +785,37 @@ public class MainActivity extends Activity implements
 	 * @param vi
 	 */
 	public void UpdateKontoDrei(View vi) {
-		// to DO
-		Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 3, true);
+		final TextView kontostandView3 = (TextView) findViewById(R.id.kontostand3);
+		// synchronising Screen
+		try {
+
+			kontostandView3.setText("[synchronisiere...]");
+			kontostandView3.setTextColor(Color.GREEN);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Thread updateKto3 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+				// falls nicht geht, Zeile kommentieren
+				Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 3,
+						true);
+				System.out.println("konto3 update");
+				FragmentManager fragmentManager = getFragmentManager();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, MeineKonten.newInstance(1))
+						.addToBackStack(null).commit();
+			}
+		});
+		updateKto3.start();
+		setBankCredentialsInView();
 	}
 
 	/**
