@@ -50,6 +50,7 @@
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textStyle="bold" />
+
             </TableRow>
 
             <TableRow
@@ -82,7 +83,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="0dp"
                 android:gravity="right" >
-
+               
                 <ImageView
                     android:id="@+id/updatekonto1"
                     android:layout_width="wrap_content"
@@ -90,7 +91,7 @@
                     android:layout_gravity="right"
                     android:layout_marginBottom="10dp"
                     android:visibility="invisible"
-                    android:onClick="UmsatzKontoEins"
+                    android:onClick="UpdateKontoEins"
                     android:src="@drawable/refresh" />
 
                 <ImageView
@@ -195,7 +196,7 @@
                     android:layout_gravity="right"
                     android:layout_marginBottom="10dp"
                     android:visibility="invisible"
-                    android:onClick="UmsatzKontoEins"
+                    android:onClick="UpdateKontoZwei"
                     android:src="@drawable/refresh" />
 
                 <ImageView
@@ -300,7 +301,7 @@
                     android:layout_gravity="right"
                     android:layout_marginBottom="10dp"
                     android:visibility="invisible"
-                    android:onClick="UmsatzKontoEins"
+                    android:onClick="UpdateKontoDrei"
                     android:src="@drawable/refresh" />
 
                 <ImageView
@@ -330,7 +331,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#FF8000"
+            android:background="@color/red"
             android:stretchColumns="1" >
 
             <TableRow
