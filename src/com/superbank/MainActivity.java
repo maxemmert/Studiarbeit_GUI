@@ -618,9 +618,19 @@ public class MainActivity extends Activity implements
 		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 				MainActivity.this, android.R.layout.select_dialog_singlechoice);
 
-		arrayAdapter.add(bankname1);
-		arrayAdapter.add(bankname2);
-		arrayAdapter.add(bankname3);
+		if (LoginActivity.credentials.getString("bankName_1", "") != "") {
+			arrayAdapter.add(LoginActivity.credentials.getString("bankName_1",
+					""));
+		}
+		if (LoginActivity.credentials.getString("bankName_2", "") != "") {
+			arrayAdapter.add(LoginActivity.credentials.getString("bankName_2",
+					""));
+		}
+		if (LoginActivity.credentials.getString("bankName_3", "") != "") {
+			arrayAdapter.add(LoginActivity.credentials.getString("bankName_3",
+					""));
+		}
+
 		builderSingle.setNegativeButton("Abbrechen",
 				new DialogInterface.OnClickListener() {
 
