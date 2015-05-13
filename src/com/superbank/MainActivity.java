@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -38,6 +39,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.superbank.R;
 
@@ -660,6 +662,89 @@ public class MainActivity extends Activity implements
 					}
 				});
 		builderSingle.show();
+	}
+
+	private static org.w3c.dom.Document saxReaderAndW3cDoc() {
+		String xmlString = null;
+		try {
+			xmlString = Utility.getStringFromFile();
+		} catch (Exception e1) {
+
+			e1.printStackTrace();
+		}
+		InputStream stream = null;
+		try {
+			stream = new ByteArrayInputStream(xmlString.getBytes("ISO-8859-1"));
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+
+		SAXReader saxReader = new SAXReader();
+		saxReader.setEncoding("ISO-8859-1");
+		org.dom4j.Document dom4jDoc = null;
+		org.w3c.dom.Document w3cDoc = null;
+		w3cDoc = Utility.convertDocument(stream, saxReader, dom4jDoc, w3cDoc);
+		HashMap<String, Element> hashMap = Utility.buildHashMap(w3cDoc);
+		XMLStorage.setHashMap(hashMap);
+		return w3cDoc;
+	}
+
+	// Update Kontostaende
+
+	/**
+	 * Runs if the Update button of Konto1 is pressed
+	 * 
+	 * @param vi
+	 */
+	public void UpdateKontoEins(View vi) {
+		final TextView kontostandView1 = (TextView) findViewById(R.id.kontostand1);
+		// synchronising Screen
+		try {
+
+			kontostandView1.setText("[synchronisiere...]");
+			kontostandView1.setTextColor(Color.GREEN);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Thread updateKto1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				// Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(),
+				// 1, true);
+				System.out.println("konto1 update");
+				FragmentManager fragmentManager = getFragmentManager();
+				fragmentManager.beginTransaction()
+						.replace(R.id.container, MeineKonten.newInstance(1))
+						.addToBackStack(null).commit();
+			}
+		});
+		updateKto1.start();
+	}
+
+	/**
+	 * Runs if the Update button of Konto2 is pressed
+	 * 
+	 * @param vi
+	 */
+	public void UpdateKontoZwei(View vi) {
+		// to DO
+		Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 2, true);
+	}
+
+	/**
+	 * Runs if the Update button of Konto3 is pressed
+	 * 
+	 * @param vi
+	 */
+	public void UpdateKontoDrei(View vi) {
+		// to DO
+		Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 3, true);
 	}
 
 	/**
