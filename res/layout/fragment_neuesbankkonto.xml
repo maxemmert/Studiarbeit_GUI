@@ -182,7 +182,7 @@
                 android:layout_height="fill_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
-                android:background="@drawable/buttonbg"
+                android:background="@layout/button_custom"
                 android:onClick="goBack"
                 android:text="@string/goback_button"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -193,7 +193,7 @@
                 android:layout_height="fill_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
-                android:background="@drawable/buttonbg"
+                android:background="@layout/button_custom"
                 android:onClick="neuesKontoAnlegenUndSpinnerZeigen"
                 android:text="@string/sync_button"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
