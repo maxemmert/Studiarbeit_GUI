@@ -725,8 +725,10 @@ public class MainActivity extends Activity implements
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				// Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(),
-				// 1, true);
+
+				// falls nicht geht, Zeile kommentieren
+				Utility.refreshKontostandByCredentials(saxReaderAndW3cDoc(), 1,
+						true);
 				System.out.println("konto1 update");
 				FragmentManager fragmentManager = getFragmentManager();
 				fragmentManager.beginTransaction()
