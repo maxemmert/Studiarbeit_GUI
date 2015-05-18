@@ -10,33 +10,91 @@
         android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_section6"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_marginLeft="5dp" 
+            android:layout_marginTop="15dp">
 
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginTop="100dp"
-            android:text="@string/copyright1"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
 
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/textview45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Institut"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <EditText
+                    android:id="@+id/institut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bgedittext"
+                    android:ems="10" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" >
+
+                <TextView
+                    android:id="@+id/textview79"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rufnummer"
+                    android:layout_marginRight="10dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <EditText
+                    android:id="@+id/rufnummer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bgedittext"
+                    android:ems="10"
+                    android:inputType="number" />
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="6dp"
-            android:text="@string/copyright2"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:paddingBottom="1.0dip"
+            android:paddingLeft="4.0dip"
+            android:paddingRight="4.0dip"
+            android:paddingTop="5.0dip" >
+
+            <Button
+                android:id="@+id/gobackButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@layout/button_custom"
+                android:onClick="goBack"
+                android:text="@string/goback_button"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1.0"
+                android:background="@layout/button_custom"
+                android:onClick="neueSperrrufnummerAnlegen"
+                android:text="Rufnummer anlegen"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

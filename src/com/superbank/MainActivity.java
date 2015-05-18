@@ -218,9 +218,10 @@ public class MainActivity extends Activity implements
 					.commit();
 			break;
 		case 6:
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, Sperren.newInstance(position))
-					.commit();
+			fragmentManager
+					.beginTransaction()
+					.replace(R.id.container,
+							SperrenOverview.newInstance(position)).commit();
 			break;
 		case 7:
 			fragmentManager.beginTransaction()
@@ -904,7 +905,10 @@ public class MainActivity extends Activity implements
 	 * @param vi
 	 */
 	public void neueSperrrufnummerAnlegen(View vi) {
-		notimplemented(vi);
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, Sperren.newInstance(1))
+				.addToBackStack(null).commit();
 	}
 
 	/**
