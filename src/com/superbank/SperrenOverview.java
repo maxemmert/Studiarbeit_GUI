@@ -2,10 +2,15 @@ package com.superbank;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.superbank.R;
 
@@ -34,6 +39,38 @@ public class SperrenOverview extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_sperrenoverview,
 				container, false);
+		((MainActivity) getActivity()).setTitle("Sperrrufnummern");
+		SharedPreferences rufnummerCollection = getActivity()
+				.getSharedPreferences(MainActivity.MyRUFNUMMERN,
+						Context.MODE_PRIVATE);
+
+		final LinearLayout lm = (LinearLayout) rootView
+				.findViewById(R.id.linearlayoutsperrenoverview);
+
+		// Create four
+		if (rufnummerCollection != null) {
+			for (int j = 1; j <= rufnummerCollection.getAll().size() / 2 + 1; j++) {
+
+				// Create LinearLayout
+				LinearLayout ll = new LinearLayout(this.getActivity());
+				ll.setOrientation(LinearLayout.HORIZONTAL);
+
+				// Create TextView
+				TextView institut = new TextView(this.getActivity());
+				institut.setText(rufnummerCollection.getString("institut_" + j,
+						"") + "    ");
+				ll.addView(institut);
+
+				// Create TextView
+				EditText rufnummer = new EditText(this.getActivity());
+				rufnummer.setText(rufnummerCollection.getString("rufnummer_"
+						+ j, ""));
+				ll.addView(rufnummer);
+
+				// Add to LinearLayout defined in XML
+				lm.addView(ll);
+			}
+		}
 		return rootView;
 	}
 

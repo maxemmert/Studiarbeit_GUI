@@ -23,7 +23,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:id="@+id/textview45"
+                    android:id="@+id/institutText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -45,7 +45,7 @@
                 android:layout_margin="5dp" >
 
                 <TextView
-                    android:id="@+id/textview79"
+                    android:id="@+id/rufnummerText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rufnummer"
@@ -91,7 +91,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1.0"
                 android:background="@layout/button_custom"
-                android:onClick="neueSperrrufnummerAnlegen"
+                android:onClick="rufnummerSpeichern"
                 android:text="Rufnummer anlegen"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>

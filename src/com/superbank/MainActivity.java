@@ -46,6 +46,11 @@ import com.example.superbank.R;
 public class MainActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+	// Rufnummer Collection
+	public static SharedPreferences rufnummerCollection;
+	public static final String MyRUFNUMMERN = "MyNUMBERS";
+	private static int counterRufnummern;
+
 	// new menue
 	private String[] mNavigationDrawerItemTitles;
 	private DrawerLayout mDrawerLayout;
@@ -908,6 +913,34 @@ public class MainActivity extends Activity implements
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, Sperren.newInstance(1))
+				.addToBackStack(null).commit();
+	}
+
+	/**
+	 * Speichert die Rufnummer dauerhaft in den credentials, um sie auf
+	 * SperrenOverview anzuzeigen und wechsle View zur Sperren Overview
+	 * 
+	 * @param vi
+	 */
+	public void rufnummerSpeichern(View vi) {
+		rufnummerCollection = getSharedPreferences(MainActivity.MyRUFNUMMERN,
+				Context.MODE_PRIVATE);
+		Editor editor = rufnummerCollection.edit();
+
+		EditText institut = (EditText) findViewById(R.id.institut);
+		EditText rufnummer = (EditText) findViewById(R.id.rufnummer);
+		counterRufnummern = rufnummerCollection.getAll().size() / 2 + 1;
+		editor.putString("institut" + "_" + counterRufnummern, institut
+				.getText().toString());
+		editor.putString("rufnummer" + "_" + counterRufnummern, rufnummer
+				.getText().toString());
+
+		editor.commit();
+
+		// Gehe zur Sperren Overview
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, SperrenOverview.newInstance(1))
 				.addToBackStack(null).commit();
 	}
 
