@@ -927,23 +927,40 @@ public class MainActivity extends Activity implements
 		RufnummernAreDeleted = false;
 		rufnummerCollection = getSharedPreferences(MainActivity.MyRUFNUMMERN,
 				Context.MODE_PRIVATE);
-		Editor editor = rufnummerCollection.edit();
 
 		EditText institut = (EditText) findViewById(R.id.institut);
 		EditText rufnummer = (EditText) findViewById(R.id.rufnummer);
-		counterRufnummern = rufnummerCollection.getAll().size() / 2 + 1;
-		editor.putString("institut" + "_" + counterRufnummern, institut
-				.getText().toString());
-		editor.putString("rufnummer" + "_" + counterRufnummern, rufnummer
-				.getText().toString());
+		if (institut.getText().toString().equals("") == false
+				|| rufnummer.getText().toString().equals("") == false) {
 
-		editor.commit();
+			Editor editor = rufnummerCollection.edit();
+			counterRufnummern = rufnummerCollection.getAll().size() / 2 + 1;
+			editor.putString("institut" + "_" + counterRufnummern, institut
+					.getText().toString());
+			editor.putString("rufnummer" + "_" + counterRufnummern, rufnummer
+					.getText().toString());
 
-		// Gehe zur Sperren Overview
-		FragmentManager fragmentManager = getFragmentManager();
-		fragmentManager.beginTransaction()
-				.replace(R.id.container, SperrenOverview.newInstance(1))
-				.addToBackStack(null).commit();
+			editor.commit();
+
+			// Gehe zur Sperren Overview
+			FragmentManager fragmentManager = getFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.container, SperrenOverview.newInstance(1))
+					.addToBackStack(null).commit();
+		} else {
+			new AlertDialog.Builder(this)
+					.setTitle("Meldung")
+					.setMessage("Bitte Institut und Rufnummer eingeben.")
+					.setNeutralButton(android.R.string.ok,
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// dismiss
+								}
+							}).setIcon(R.drawable.ic_launcher).show();
+		}
+
 	}
 
 	/**

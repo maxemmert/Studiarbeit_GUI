@@ -48,7 +48,10 @@
     <string name="drawer_open">Öffnen</string>
     <string name="drawer_close">Schließen</string>
     <string name="registrieren">registrieren</string>
-    
+    <string name="impressumsite">Diese Applikation wurde im Rahmen der Studienarbeit OutBank für Android erstellt.</string>
+    <string name="betreuer">Betreuer: Rafael Rietz, HP</string>
+    <string name="max">Entwickler: Max Emmert | max_emmert@web.de</string>
+    <string name="daniel">Entwickler: Daniel Auler | it12128@lehre.dhbw-stuttgart.de</string>
     
     <string-array name="navigation_drawer_items_array">
     <item>Home</item>
