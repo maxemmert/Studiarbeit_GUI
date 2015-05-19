@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="0dp"
         android:orientation="vertical" >
 
         <TextView
@@ -15,15 +15,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:layout_marginBottom="25dp"
             android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:text="@string/impressumsite"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+         <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="136dp"
+            android:layout_height="138dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/superbanklogo" />
          
         <TextView
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/max"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -31,6 +44,9 @@
             android:id="@+id/textView34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/daniel"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -38,6 +54,8 @@
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:text="@string/betreuer"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
