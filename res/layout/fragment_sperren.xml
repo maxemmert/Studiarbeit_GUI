@@ -94,6 +94,8 @@
                 android:onClick="rufnummerSpeichern"
                 android:text="Rufnummer anlegen"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+            
+              
         </LinearLayout>
     </LinearLayout>
 

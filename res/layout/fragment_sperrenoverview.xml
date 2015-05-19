@@ -10,6 +10,19 @@
         android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
+        <TableLayout
+            android:id="@+id/tablefornumbers"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0" >
+
+            <TableRow
+                android:id="@+id/TableRow01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+        </TableLayout>
+
         <LinearLayout
             android:id="@+id/linearlayoutsperrenoverview"
             android:layout_width="match_parent"

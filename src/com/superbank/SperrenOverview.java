@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,10 +46,9 @@ public class SperrenOverview extends Fragment {
 		final LinearLayout lm = (LinearLayout) rootView
 				.findViewById(R.id.linearlayoutsperrenoverview);
 
-		// Create four
+		// Create numbers
 		if (rufnummerCollection != null) {
 			for (int j = 1; j <= rufnummerCollection.getAll().size() / 2 + 1; j++) {
-
 				// Create LinearLayout
 				LinearLayout ll = new LinearLayout(this.getActivity());
 				ll.setOrientation(LinearLayout.HORIZONTAL);
@@ -62,14 +60,25 @@ public class SperrenOverview extends Fragment {
 				ll.addView(institut);
 
 				// Create TextView
-				EditText rufnummer = new EditText(this.getActivity());
+				TextView rufnummer = new TextView(this.getActivity());
 				rufnummer.setText(rufnummerCollection.getString("rufnummer_"
 						+ j, ""));
 				ll.addView(rufnummer);
 
 				// Add to LinearLayout defined in XML
 				lm.addView(ll);
+
 			}
+		}
+		if (MainActivity.RufnummernAreDeleted == true) {
+			LinearLayout ll = new LinearLayout(this.getActivity());
+			ll.setOrientation(LinearLayout.HORIZONTAL);
+
+			// Create TextView
+			TextView noNumber = new TextView(this.getActivity());
+			noNumber.setText("Keine Rufnummern hinterlegt");
+			ll.addView(noNumber);
+			lm.addView(ll);
 		}
 		return rootView;
 	}

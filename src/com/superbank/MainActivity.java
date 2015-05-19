@@ -110,6 +110,7 @@ public class MainActivity extends Activity implements
 	 */
 	// private CharSequence mTitle;
 	private final boolean loggedIn = false;
+	public static boolean RufnummernAreDeleted = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -923,6 +924,7 @@ public class MainActivity extends Activity implements
 	 * @param vi
 	 */
 	public void rufnummerSpeichern(View vi) {
+		RufnummernAreDeleted = false;
 		rufnummerCollection = getSharedPreferences(MainActivity.MyRUFNUMMERN,
 				Context.MODE_PRIVATE);
 		Editor editor = rufnummerCollection.edit();
@@ -936,6 +938,30 @@ public class MainActivity extends Activity implements
 				.getText().toString());
 
 		editor.commit();
+
+		// Gehe zur Sperren Overview
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, SperrenOverview.newInstance(1))
+				.addToBackStack(null).commit();
+	}
+
+	/**
+	 * 
+	 * Löscht alle Rufnummern und geht zur SperrenOverview
+	 * 
+	 * @param vi
+	 */
+	public void alleRufnummernLoeschen(View vi) {
+		RufnummernAreDeleted = true;
+		rufnummerCollection = getSharedPreferences(MainActivity.MyRUFNUMMERN,
+				Context.MODE_PRIVATE);
+		Editor editor = rufnummerCollection.edit();
+		for (int i = 1; i <= 1000; i++) {
+			editor.remove("institut" + "_" + i);
+			editor.remove("rufnummer" + "_" + i);
+			editor.commit();
+		}
 
 		// Gehe zur Sperren Overview
 		FragmentManager fragmentManager = getFragmentManager();
