@@ -44,14 +44,16 @@ public class MeineKonten extends Fragment {
 		TableLayout summentable = (TableLayout) rootView
 				.findViewById(R.id.gesamtsumme);
 		if (!MainActivity.summe.equals("0.0 EUR")) {
+			summentable.setBackgroundResource(R.color.red);
+		} else if (MainActivity.summe.equals("0.0 EUR")) {
 			summentable.setBackgroundResource(R.color.orange);
-		}
-		if (!MainActivity.summe.contains("-")) {
+		} else if (!MainActivity.summe.contains("-")) {
 			summentable.setBackgroundResource(R.color.green);
 		}
 
 		// 1.Konto
-		if (LoginActivity.credentials.getString("bankName_1", "") != "") {
+		if (LoginActivity.credentials.getString("bankName_1", "") != ""
+				&& LoginActivity.credentials.getString("kontoGuthaben_1", "") != "") {
 			TextView kontostand1 = (TextView) rootView
 					.findViewById(R.id.kontostand1);
 			kontostand1.setText(MainActivity.kontostand1);
@@ -83,7 +85,8 @@ public class MeineKonten extends Fragment {
 		// 1. Konto Ende
 
 		// 2.Konto
-		if (LoginActivity.credentials.getString("bankName_2", "") != "") {
+		if (LoginActivity.credentials.getString("bankName_2", "") != ""
+				&& LoginActivity.credentials.getString("kontoGuthaben_2", "") != "") {
 			TextView kontostand2 = (TextView) rootView
 					.findViewById(R.id.kontostand2);
 			kontostand2.setText(MainActivity.kontostand2);
@@ -115,7 +118,8 @@ public class MeineKonten extends Fragment {
 		// 2. Konto Ende
 
 		// 3.Konto
-		if (LoginActivity.credentials.getString("bankName_3", "") != "") {
+		if (LoginActivity.credentials.getString("bankName_3", "") != ""
+				&& LoginActivity.credentials.getString("kontoGuthaben_3", "") != "") {
 			TextView kontostand3 = (TextView) rootView
 					.findViewById(R.id.kontostand3);
 			kontostand3.setText(MainActivity.kontostand3);

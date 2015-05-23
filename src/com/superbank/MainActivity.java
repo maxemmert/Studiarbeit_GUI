@@ -416,7 +416,7 @@ public class MainActivity extends Activity implements
 				.replace(R.id.container, MeineKonten.newInstance(1)).commit();
 	}
 
-	public void kontostandAbrufen(View vi, int j) {
+	public boolean kontostandAbrufen(View vi, int j) {
 
 		String xmlString = null;
 		try {
@@ -446,7 +446,7 @@ public class MainActivity extends Activity implements
 			StrictMode.setThreadPolicy(policy);
 		}
 
-		Utility.getKontostandByCredentials(w3cDoc, j, true);
+		return Utility.getKontostandByCredentials(w3cDoc, j, true);
 
 	}
 
@@ -1367,9 +1367,9 @@ public class MainActivity extends Activity implements
 		try {
 			HBCIUtils.refreshBLZList(is);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return;
 		}
+		boolean success = false;
 		boolean check = false;
 		for (int j = 1; j <= 3; j++) {
 			if ((((LoginActivity.credentials
@@ -1379,15 +1379,39 @@ public class MainActivity extends Activity implements
 				Utility.newKontoToCredentials(newKontoBlz, newKontoKto,
 						newKontoBenutzer, newKontoPin, newKontoTanmethod,
 						newKontoFiltertyp, newKontoLocation, j);
-				kontostandAbrufen(vi, j);
+				success = kontostandAbrufen(vi, j);
 				check = true;
 			}
 		}
-		setBankCredentialsInView();
+		if (success) {
+			setBankCredentialsInView();
+		} else {
+			this.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+
+					AlertDialog.Builder builderSingle = new AlertDialog.Builder(
+							MainActivity.this);
+					builderSingle.setIcon(R.drawable.ic_launcher);
+					builderSingle.setTitle("Aktion nicht erfolgreich.");
+					builderSingle.setNegativeButton("OK",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+					builderSingle.show();
+				}
+			});
+		}
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, MeineKonten.newInstance(1))
 				.addToBackStack(null).commit();
+
 	}
 
 	/**
