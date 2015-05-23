@@ -527,38 +527,55 @@ public class MainActivity extends Activity implements
 
 	private void setBankCredentialsInView() {
 		// 1.Konto
-		kontostand1 = LoginActivity.credentials
-				.getString("kontoGuthaben_1", "").replace("[", "")
-				.replace("]", "");
-		bankname1 = LoginActivity.credentials.getString("bankName_1", "");
-		kontonummer1 = LoginActivity.credentials.getString("kontoNummer_1", "");
-		blz1 = LoginActivity.credentials.getString("bankleitzahl_1", "");
-		// 2.Konto
-		kontostand2 = LoginActivity.credentials
-				.getString("kontoGuthaben_2", "").replace("[", "")
-				.replace("]", "");
-		bankname2 = LoginActivity.credentials.getString("bankName_2", "");
-		kontonummer2 = LoginActivity.credentials.getString("kontoNummer_2", "");
-		blz2 = LoginActivity.credentials.getString("bankleitzahl_2", "");
-		// 3.Konto
-		kontostand3 = LoginActivity.credentials
-				.getString("kontoGuthaben_3", "").replace("[", "")
-				.replace("]", "");
-		bankname3 = LoginActivity.credentials.getString("bankName_3", "");
-		kontonummer3 = LoginActivity.credentials.getString("kontoNummer_3", "");
-		blz3 = LoginActivity.credentials.getString("bankleitzahl_3", "");
+		if (!LoginActivity.credentials.getString("kontoGuthaben_1", "")
+				.equalsIgnoreCase("")) {
 
+			kontostand1 = LoginActivity.credentials
+					.getString("kontoGuthaben_1", "").replace("[", "")
+					.replace("]", "");
+			bankname1 = LoginActivity.credentials.getString("bankName_1", "");
+			kontonummer1 = LoginActivity.credentials.getString("kontoNummer_1",
+					"");
+			blz1 = LoginActivity.credentials.getString("bankleitzahl_1", "");
+		}
+		// 2.Konto
+		if (!LoginActivity.credentials.getString("kontoGuthaben_2", "")
+				.equalsIgnoreCase("")) {
+			kontostand2 = LoginActivity.credentials
+					.getString("kontoGuthaben_2", "").replace("[", "")
+					.replace("]", "");
+			bankname2 = LoginActivity.credentials.getString("bankName_2", "");
+			kontonummer2 = LoginActivity.credentials.getString("kontoNummer_2",
+					"");
+			blz2 = LoginActivity.credentials.getString("bankleitzahl_2", "");
+		}
+		// 3.Konto
+		if (!LoginActivity.credentials.getString("kontoGuthaben_3", "")
+				.equalsIgnoreCase("")) {
+			kontostand3 = LoginActivity.credentials
+					.getString("kontoGuthaben_3", "").replace("[", "")
+					.replace("]", "");
+			bankname3 = LoginActivity.credentials.getString("bankName_3", "");
+			kontonummer3 = LoginActivity.credentials.getString("kontoNummer_3",
+					"");
+			blz3 = LoginActivity.credentials.getString("bankleitzahl_3", "");
+		}
+		refreshKontoSumme();
+
+	}
+
+	public void refreshKontoSumme() {
 		// Summenbildung
 		String ktSt1 = "0.0";
 		String ktSt2 = "0.0";
 		String ktSt3 = "0.0";
-		if (kontostand1 != "") {
+		if (kontostand1 != "" && kontostand1 != null) {
 			ktSt1 = kontostand1;
 		}
-		if (kontostand2 != "") {
+		if (kontostand2 != "" && kontostand2 != null) {
 			ktSt2 = kontostand2;
 		}
-		if (kontostand3 != "") {
+		if (kontostand3 != "" && kontostand3 != null) {
 			ktSt3 = kontostand3;
 		}
 
@@ -566,6 +583,17 @@ public class MainActivity extends Activity implements
 				+ Double.valueOf(ktSt2.replace(" EUR", "")) + Double
 				.valueOf(ktSt3.replace(" EUR", "")))) + " EUR";
 
+		final TextView summeView = (TextView) findViewById(R.id.summe);
+		// synchronising Screen
+		try {
+
+			summeView.setText(summe);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, MeineKonten.newInstance(1)).commit();
 	}
 
 	// Lege neues Konto an und zeige Ladespinner
@@ -664,15 +692,472 @@ public class MainActivity extends Activity implements
 									@Override
 									public void onClick(DialogInterface dialog,
 											int which) {
-										Utility.deleteKonto(konto);
 										if (konto == 1) {
-											kontostand1 = "0.0";
-										} else if (konto == 2) {
-											kontostand2 = "0.0";
-										} else
-											kontostand3 = "0.0";
 
+											if (!LoginActivity.credentials
+													.getString("bankName_3", "")
+													.equalsIgnoreCase("")) {
+												moveKonto3ToKonto1();
+												kontostand3 = "0.0";
+												Utility.deleteKonto(3);
+											} else if (!LoginActivity.credentials
+													.getString("bankName_2", "")
+													.equalsIgnoreCase("")) {
+												moveKonto2ToKonto1();
+												kontostand2 = "0.0";
+												Utility.deleteKonto(2);
+											} else {
+												kontostand1 = "0.0";
+												Utility.deleteKonto(1);
+											}
+										}
+										if (konto == 2) {
+											if (!LoginActivity.credentials
+													.getString("bankName_3", "")
+													.equalsIgnoreCase("")) {
+												moveKonto3ToKonto2();
+												kontostand3 = "0.0";
+												Utility.deleteKonto(3);
+											} else {
+												kontostand2 = "0.0";
+												Utility.deleteKonto(2);
+											}
+										}
+										if (konto == 3) {
+											kontostand3 = "0.0";
+											Utility.deleteKonto(3);
+										}
+
+										setBankCredentialsInView();
 										dialog.dismiss();
+									}
+
+									private void moveKonto2ToKonto1() {
+										int intStr = 1;
+										Editor editor1 = LoginActivity.credentials
+												.edit();
+										editor1.putString(
+												"kontoGuthaben" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoGuthaben_2",
+																""));
+										editor1.putString("hbciHost" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHost_2",
+																""));
+										editor1.putString(
+												"hbciServletUrl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrl_2",
+																""));
+										editor1.putString(
+												"hbciHostVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHostVersion_2",
+																""));
+										editor1.putString(
+												"hbciServletUrlVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrlVersion_2",
+																""));
+										editor1.putString(
+												"kontoUsername" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoUsername_2",
+																""));
+										editor1.putString("kontoPasswd" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoPasswd",
+																""));
+										editor1.putString(
+												"currentTanMethod" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"currentTanMethod_2",
+																""));
+										editor1.putString("filterTyp" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"filterTyp_2",
+																""));
+										editor1.putString(
+												"laenderKennung" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"laenderKennung_2",
+																""));
+										editor1.putString(
+												"kontoNummer" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoNummer_2",
+																""));
+										editor1.putString(
+												"bankleitzahl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankleitzahl_2",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "money",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_money",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "date",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_date",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "counterAccount",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_counterAccount",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_0",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_transactionText_0",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_1",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_transactionText_1",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_2",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_transactionText_2",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_3",
+												LoginActivity.credentials
+														.getString(
+																"transaction_2_transactionText_3",
+																""));
+										editor1.putString("bankName" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankName_2",
+																""));
+										editor1.commit();
+
+									}
+
+									private void moveKonto3ToKonto2() {
+										int intStr = 2;
+										Editor editor1 = LoginActivity.credentials
+												.edit();
+										editor1.putString(
+												"kontoGuthaben" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoGuthaben_3",
+																""));
+										editor1.putString("hbciHost" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHost_3",
+																""));
+										editor1.putString(
+												"hbciServletUrl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrl_3",
+																""));
+										editor1.putString(
+												"hbciHostVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHostVersion_3",
+																""));
+										editor1.putString(
+												"hbciServletUrlVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrlVersion_3",
+																""));
+										editor1.putString(
+												"kontoUsername" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoUsername_3",
+																""));
+										editor1.putString("kontoPasswd" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoPasswd",
+																""));
+										editor1.putString(
+												"currentTanMethod" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"currentTanMethod_3",
+																""));
+										editor1.putString("filterTyp" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"filterTyp_3",
+																""));
+										editor1.putString(
+												"laenderKennung" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"laenderKennung_3",
+																""));
+										editor1.putString(
+												"kontoNummer" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoNummer_3",
+																""));
+										editor1.putString(
+												"bankleitzahl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankleitzahl_3",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "money",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_money",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "date",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_date",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "counterAccount",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_counterAccount",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_0",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_0",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_1",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_1",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_2",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_2",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_3",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_3",
+																""));
+										editor1.putString("bankName" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankName_3",
+																""));
+										editor1.commit();
+
+									}
+
+									public void moveKonto3ToKonto1() {
+										int intStr = 1;
+										Editor editor1 = LoginActivity.credentials
+												.edit();
+										editor1.putString(
+												"kontoGuthaben" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoGuthaben_3",
+																""));
+										editor1.putString("hbciHost" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHost_3",
+																""));
+										editor1.putString(
+												"hbciServletUrl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrl_3",
+																""));
+										editor1.putString(
+												"hbciHostVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciHostVersion_3",
+																""));
+										editor1.putString(
+												"hbciServletUrlVersion" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"hbciServletUrlVersion_3",
+																""));
+										editor1.putString(
+												"kontoUsername" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoUsername_3",
+																""));
+										editor1.putString("kontoPasswd" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoPasswd",
+																""));
+										editor1.putString(
+												"currentTanMethod" + "_"
+														+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"currentTanMethod_3",
+																""));
+										editor1.putString("filterTyp" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"filterTyp_3",
+																""));
+										editor1.putString(
+												"laenderKennung" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"laenderKennung_3",
+																""));
+										editor1.putString(
+												"kontoNummer" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"kontoNummer_3",
+																""));
+										editor1.putString(
+												"bankleitzahl" + "_" + intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankleitzahl_3",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "money",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_money",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_" + "date",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_date",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "counterAccount",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_counterAccount",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_0",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_0",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_1",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_1",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_2",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_2",
+																""));
+										editor1.putString(
+												"transaction" + "_" + intStr
+														+ "_"
+														+ "transactionText_3",
+												LoginActivity.credentials
+														.getString(
+																"transaction_3_transactionText_3",
+																""));
+										editor1.putString("bankName" + "_"
+												+ intStr,
+												LoginActivity.credentials
+														.getString(
+																"bankName_3",
+																""));
+										editor1.commit();
 									}
 								});
 						builderInner.show();
@@ -853,6 +1338,17 @@ public class MainActivity extends Activity implements
 
 		Spinner tanSpinner = (Spinner) findViewById(R.id.tanmethode_spinner);
 		newKontoTanmethod = tanSpinner.getSelectedItem().toString(); // 911
+		if (newKontoTanmethod != null) {
+			if (newKontoTanmethod.equalsIgnoreCase("smsTan")) {
+				newKontoTanmethod = "920";
+			} else if (newKontoTanmethod.equalsIgnoreCase("iTAN")) {
+				newKontoTanmethod = "900";
+			} else if (newKontoTanmethod.equalsIgnoreCase("chipTAN manuell")) {
+				newKontoTanmethod = "910";
+			} else if (newKontoTanmethod.equalsIgnoreCase("chipTAN optisch")) {
+				newKontoTanmethod = "911";
+			}
+		}
 		Spinner filterSpinner = (Spinner) findViewById(R.id.filtertypspinner);
 		newKontoFiltertyp = filterSpinner.getSelectedItem().toString(); // Base64
 		Spinner landSpinner = (Spinner) findViewById(R.id.landspinner);

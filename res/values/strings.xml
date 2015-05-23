@@ -72,7 +72,10 @@
     </string-array>
     
        <string-array name="tan_spinner_items">
-        <item>911</item>
+        <item>smsTAN</item>
+        <item>iTAN</item>
+        <item>chipTAN manuell</item>
+        <item>chipTAN optisch</item>
     </string-array>
     
 </resources>

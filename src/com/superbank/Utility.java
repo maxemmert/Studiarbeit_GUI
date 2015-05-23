@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import name.studiarbeit.hbci.AccountReference;
@@ -105,71 +104,6 @@ public class Utility {
 		return w3cDoc;
 	}
 
-	public static String getKontostand(Document w3cDoc) {
-		String acct, code, name, securityCode;
-		HbciAccount a = new HbciAccount("max_emmert", "61050000", w3cDoc);
-		a.setVersion(HbciVersion.PLUS);
-		a.setCredentials(new HbciCredentials());
-		a.setAccountNumber("1000482517"); // TODO: kann man bestimmt wieder
-											// rausnehmen!!
-
-		a.getCredentials().setPin("PASSWORD");
-
-		HbciSession session = (HbciSession) a.createHbciSession();
-
-		String blz = "61050000";
-		String country = "DE";
-		String userId = "BENUTZER";
-		int port = 443;
-		String filterType = "Base64";
-		String host = "hbci-pintan-bw.s-hbci.de/PinTanServlet";
-		String currentTanMethod = "911";
-		session.setCredentials(blz, country, userId, port, filterType, host,
-				currentTanMethod);
-
-		session.setPassportPath(null);
-
-		session.logIn();
-
-		session.acquireBalance();
-
-		session.acquireTransactions();
-
-		Transactions transactions = a.getTransactions();
-
-		Balance balance = a.getBalance();
-
-		if (transactions != null) {
-
-			Iterator<Transaction> transactionIterator = transactions
-					.getIterator();
-
-			int i = 0;
-			while (i < 10 && transactionIterator.hasNext()) {
-				Transaction currentTransaction = transactionIterator.next();
-				// Hole ï¿½berweisungsbetrag
-				Money money = currentTransaction.getBalance();
-				// Hole ï¿½berweisungsdatum
-				Date date = currentTransaction.getBookingDate();
-				// Hole Zielaccount bzw. "Gegenaccount"
-				AccountReference counterAccount = currentTransaction
-						.getCounterAccount();
-				// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
-				List<String> textList = currentTransaction.getUsageLines();
-			}
-
-			System.out.print("Latest Transaction: \n"
-					+ transactions.latestTransaction().toString());
-		}
-
-		// Timestamp und Money vom Balance-Objekt holen
-		if (balance != null) {
-			Money money = balance.getAvailable();
-			return "Available Money: " + money.toString();
-		}
-		return "fehler";
-	}
-
 	public static HashMap<String, Element> buildHashMap(Document doc) {
 		HashMap<String, Element> hm = new HashMap<String, Element>();
 		NodeList nodeList = doc.getDocumentElement().getChildNodes();
@@ -211,7 +145,7 @@ public class Utility {
 	}
 
 	/**
-	 * Lï¿½scht alle credentials zu dem konto i. Danach sollte man durch
+	 * L�scht alle credentials zu dem konto i. Danach sollte man durch
 	 * aktualisieren der Page die Konto-Liste aktualisieren.
 	 * 
 	 * @param i
@@ -267,18 +201,7 @@ public class Utility {
 			sb.delete(0, 8);
 		}
 
-		editor.putString("hbciServletUrl" + "_" + num, sb.toString()); // TODO:
-																		// beim
-																		// debuggen
-																		// mal
-																		// gucken
-																		// ob
-																		// pintanurl
-																		// und
-																		// hbcihost
-																		// nicht
-																		// vertauscht
-																		// wurden
+		editor.putString("hbciServletUrl" + "_" + num, sb.toString());
 		editor.putString("hbciHostVersion" + "_" + num,
 				HBCIUtils.getHBCIVersionForBLZ(blz));
 		editor.putString("hbciServletUrlVersion" + "_" + num,
@@ -309,8 +232,8 @@ public class Utility {
 
 	/**
 	 * Aktualisiert fÃ¼r Konto i den Kontostand in den Credentials. Die
-	 * BenutzeroberflÃ¤che muss dann natÃ¼rlich noch aktualisiert werden, sobald
-	 * diese funktion aufgerufen wurde.
+	 * BenutzeroberflÃ¤che muss dann natÃ¼rlich noch aktualisiert werden,
+	 * sobald diese funktion aufgerufen wurde.
 	 * 
 	 * @param w3cDoc
 	 * @param i
@@ -398,8 +321,8 @@ public class Utility {
 
 	/**
 	 * Gibt false zurï¿½ck, wenn beim Abfragen des kontostands etwas schief
-	 * geht. Gibt true zurï¿½ck, wenn alles gut ging und setzt die credentials
-	 * fï¿½r umsatz und transaktionen.
+	 * geht. Gibt true zurï¿½ck, wenn alles gut ging und setzt die
+	 * credentials fï¿½r umsatz und transaktionen.
 	 * 
 	 * @param w3cDoc
 	 * @param i
