@@ -50,6 +50,13 @@ public class MeineKonten extends Fragment {
 		} else if (!MainActivity.summe.contains("-")) {
 			summentable.setBackgroundResource(R.color.green);
 		}
+		// vorsichtshalber "fehlerhafte" konten loeschen
+		for (int i = 1; i < 4; i++) {
+			if (LoginActivity.credentials.getString("bankName_" + i, "")
+					.contains("()")) {
+				Utility.deleteKonto(i);
+			}
+		}
 
 		// 1.Konto
 		if (LoginActivity.credentials.getString("bankName_1", "") != ""
