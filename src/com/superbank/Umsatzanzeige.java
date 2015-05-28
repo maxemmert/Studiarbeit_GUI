@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class Umsatzanzeige extends Fragment {
 				container, false);
 		((MainActivity) getActivity()).setTitle("Umsatzanzeige");
 
-		List<String> spinnerArray = new ArrayList<String>();
+		final List<String> spinnerArray = new ArrayList<String>();
 
 		if (LoginActivity.credentials.getString("bankName_1", "") != "") {
 			spinnerArray.add(LoginActivity.credentials.getString("bankName_1",
@@ -64,6 +65,26 @@ public class Umsatzanzeige extends Fragment {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		Spinner sItems = (Spinner) rootView.findViewById(R.id.kontospinner);
 		sItems.setAdapter(adapter);
+
+		sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view,
+					int i, long l) {
+				// Hier ist i oder j die jeweilige Position der Bank. Die erste
+				// Bank hat den Index i = 0,
+				// die zweite Bank i = 1 und die dritte i=2
+				System.out.println("i " + i);
+
+				// Hier muss die Umsatzanzeige gesetzt werden.
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 		TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
 		money.setText(LoginActivity.credentials.getString(
