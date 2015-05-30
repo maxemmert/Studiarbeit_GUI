@@ -1385,6 +1385,7 @@ public class MainActivity extends Activity implements
 		}
 		if (success) {
 			setBankCredentialsInView();
+
 		} else {
 			this.runOnUiThread(new Runnable() {
 				@Override

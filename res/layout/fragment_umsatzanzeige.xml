@@ -49,22 +49,22 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext0"
+                    android:id="@+id/umsatztransactiontext1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext0"
+                    android:text="umsatztransactiontext1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzmoney"
+                    android:id="@+id/umsatzmoney1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="money"
+                    android:text="money1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -75,19 +75,19 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount"
+                    android:id="@+id/umsatzcounterAccount1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc"
+                    android:text="counteracc1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzdate"
+                    android:id="@+id/umsatzdate1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:gravity="right"
-                    android:text="date"
+                    android:text="date1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 

@@ -39,7 +39,7 @@ public class Umsatzanzeige extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_umsatzanzeige,
+		final View rootView = inflater.inflate(R.layout.fragment_umsatzanzeige,
 				container, false);
 		((MainActivity) getActivity()).setTitle("Umsatzanzeige");
 
@@ -58,6 +58,11 @@ public class Umsatzanzeige extends Fragment {
 					""));
 		}
 
+		// Testen
+		spinnerArray.add("Wert1");
+		spinnerArray.add("Wert2");
+		//
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity()
 				.getBaseContext(), android.R.layout.simple_spinner_item,
 				spinnerArray);
@@ -74,6 +79,162 @@ public class Umsatzanzeige extends Fragment {
 				// Hier ist i oder j die jeweilige Position der Bank. Die erste
 				// Bank hat den Index i = 0,
 				// die zweite Bank i = 1 und die dritte i=2
+
+				// Felder Umsatz 1
+				TextView transactiontext1 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext1);
+				TextView money1 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney1);
+				TextView counterAccount1 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount1);
+				TextView date1 = (TextView) rootView
+						.findViewById(R.id.umsatzdate1);
+
+				// Felder Umsatz 2
+				TextView transactiontext2 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext2);
+				TextView money2 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney2);
+				TextView counterAccount2 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount2);
+				TextView date2 = (TextView) rootView
+						.findViewById(R.id.umsatzdate2);
+
+				// Felder Umsatz 3
+				TextView transactiontext3 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext3);
+				TextView money3 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney3);
+				TextView counterAccount3 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount3);
+				TextView date3 = (TextView) rootView
+						.findViewById(R.id.umsatzdate3);
+
+				// Felder Umsatz 4
+				TextView transactiontext4 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext4);
+				TextView money4 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney4);
+				TextView counterAccount4 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount4);
+				TextView date4 = (TextView) rootView
+						.findViewById(R.id.umsatzdate4);
+
+				// Felder Umsatz 5
+				TextView transactiontext5 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext5);
+				TextView money5 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney5);
+				TextView counterAccount5 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount5);
+				TextView date5 = (TextView) rootView
+						.findViewById(R.id.umsatzdate5);
+
+				// Felder Umsatz 6
+				TextView transactiontext6 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext6);
+				TextView money6 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney6);
+				TextView counterAccount6 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount6);
+				TextView date6 = (TextView) rootView
+						.findViewById(R.id.umsatzdate6);
+
+				// Felder Umsatz 7
+				TextView transactiontext7 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext7);
+				TextView money7 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney7);
+				TextView counterAccount7 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount7);
+				TextView date7 = (TextView) rootView
+						.findViewById(R.id.umsatzdate7);
+
+				// Felder Umsatz 8
+				TextView transactiontext8 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext8);
+				TextView money8 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney8);
+				TextView counterAccount8 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount8);
+				TextView date8 = (TextView) rootView
+						.findViewById(R.id.umsatzdate8);
+
+				// Felder Umsatz 9
+				TextView transactiontext9 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext9);
+				TextView money9 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney9);
+				TextView counterAccount9 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount9);
+				TextView date9 = (TextView) rootView
+						.findViewById(R.id.umsatzdate9);
+
+				// Felder Umsatz 10
+				TextView transactiontext10 = (TextView) rootView
+						.findViewById(R.id.umsatztransactiontext10);
+				TextView money10 = (TextView) rootView
+						.findViewById(R.id.umsatzmoney10);
+				TextView counterAccount10 = (TextView) rootView
+						.findViewById(R.id.umsatzcounterAccount10);
+				TextView date10 = (TextView) rootView
+						.findViewById(R.id.umsatzdate10);
+
+				// Bankenabhaenginge Werte definieren
+
+				// Bank 1
+				String transaction_1_1_money = "transaction_1_1_money";
+				String transaction_1_1_date = "transaction_1_1_date";
+				String transaction_1_1_counterAccount = "transaction_1_1_counterAccount";
+
+				String transaction_2_1_money = "transaction_2_1_money";
+				String transaction_2_1_date = "transaction_2_1_date";
+				String transaction_2_1_counterAccount = "transaction_2_1_counterAccount";
+
+				// Bank 2
+				String transaction_1_2_money = "transaction_1_2_money";
+				String transaction_1_2_date = "transaction_1_2_date";
+				String transaction_1_2_counterAccount = "transaction_1_2_counterAccount";
+
+				String transaction_2_2_money = "transaction_2_2_money";
+				String transaction_2_2_date = "transaction_2_2_date";
+				String transaction_2_2_counterAccount = "transaction_2_2_counterAccount";
+
+				// Bank 3
+				String transaction_1_3_money = "transaction_1_3_money";
+				String transaction_1_3_date = "transaction_1_3_date";
+				String transaction_1_3_counterAccount = "transaction_1_2_counterAccount";
+
+				String transaction_2_3_money = "transaction_2_3_money";
+				String transaction_2_3_date = "transaction_2_3_date";
+				String transaction_2_3_counterAccount = "transaction_2_2_counterAccount";
+
+				// Werte setzen
+
+				if (i == 0) {
+					// money1.setText("Test1");
+					money1.setText(LoginActivity.credentials.getString(
+							transaction_1_1_money, ""));
+					date1.setText(LoginActivity.credentials.getString(
+							transaction_1_1_date, ""));
+					counterAccount1.setText(LoginActivity.credentials
+							.getString(transaction_1_1_counterAccount, ""));
+
+				}
+				if (i == 1) {
+					// money1.setText("Test2");
+					money1.setText(LoginActivity.credentials.getString(
+							transaction_1_2_money, ""));
+					date1.setText(LoginActivity.credentials.getString(
+							transaction_1_2_date, ""));
+					counterAccount1.setText(LoginActivity.credentials
+							.getString(transaction_1_2_counterAccount, ""));
+				}
+
+				if (i == 2) {
+					money1.setText(LoginActivity.credentials.getString(
+							transaction_1_3_money, ""));
+				}
 				System.out.println("i " + i);
 
 				// Hier muss die Umsatzanzeige gesetzt werden.
@@ -86,9 +247,9 @@ public class Umsatzanzeige extends Fragment {
 			}
 		});
 
-		TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
-		money.setText(LoginActivity.credentials.getString(
-				"transaction_1_1_money", ""));
+		// TextView money = (TextView) rootView.findViewById(R.id.umsatzmoney);
+		// money.setText(LoginActivity.credentials.getString(
+		// "transaction_1_1_money", ""));
 
 		// "transaction" + "_" + transNr+ "_" + intStr + "_" + "money"
 		// "transaction" + "_" + transNr+ "_" + intStr + "_" + "date"
