@@ -59,8 +59,8 @@ public class Umsatzanzeige extends Fragment {
 		}
 
 		// Testen
-		spinnerArray.add("Wert1");
-		spinnerArray.add("Wert2");
+		// spinnerArray.add("Wert1");
+		// spinnerArray.add("Wert2");
 		//
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity()
