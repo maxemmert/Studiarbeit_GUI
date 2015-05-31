@@ -240,10 +240,7 @@ public class Umsatzanzeige extends Fragment {
 					counterAccount1.setText(LoginActivity.credentials
 							.getString(transaction_1_1_counterAccount, ""));
 					transactiontext1.setText(LoginActivity.credentials
-							.getString(transaction_1_1_transactionText_0 + "\n"
-									+ transaction_1_1_transactionText_1 + "\n"
-									+ transaction_1_1_transactionText_2 + "\n"
-									+ transaction_1_1_transactionText_3, ""));
+							.getString(transaction_1_1_transactionText_1, ""));
 
 					// trans2
 					money2.setText(LoginActivity.credentials.getString(
