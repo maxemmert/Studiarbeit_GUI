@@ -182,14 +182,6 @@ public class Umsatzanzeige extends Fragment {
 
 				// Bankenabhaenginge Werte definieren
 
-				// -----------------------Bank 1
-				// trans1
-
-				// Werte setzen TO DO
-				System.out.println("money 2_1:"
-						+ LoginActivity.credentials.getString(
-								"transaction_2_1_money", ""));
-
 				int j = i + 1;
 				// trans1
 				// money1.setText(LoginActivity.credentials.getString(
@@ -202,8 +194,9 @@ public class Umsatzanzeige extends Fragment {
 				// "transaction_1_" + j + "_transactionText_0", ""));
 
 				// trans2
-				money2.setText(LoginActivity.credentials.getString(
-						"transaction_2_" + j + "_money", ""));
+				money2.setText(LoginActivity.credentials
+						.getString("transaction_2_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date2.setText(LoginActivity.credentials.getString(
 						"transaction_2_" + j + "_date", ""));
 				counterAccount2.setText(LoginActivity.credentials.getString(
@@ -212,8 +205,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_2_" + j + "_transactionText_0", ""));
 
 				// trans3
-				money3.setText(LoginActivity.credentials.getString(
-						"transaction_3_" + j + "_money", ""));
+				money3.setText(LoginActivity.credentials
+						.getString("transaction_3_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date3.setText(LoginActivity.credentials.getString(
 						"transaction_3_" + j + "_date", ""));
 				counterAccount3.setText(LoginActivity.credentials.getString(
@@ -222,8 +216,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_3_" + j + "_transactionText_0", ""));
 
 				// trans4
-				money4.setText(LoginActivity.credentials.getString(
-						"transaction_4_" + j + "_money", ""));
+				money4.setText(LoginActivity.credentials
+						.getString("transaction_4_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date4.setText(LoginActivity.credentials.getString(
 						"transaction_4_" + j + "_date", ""));
 				counterAccount4.setText(LoginActivity.credentials.getString(
@@ -232,8 +227,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_4_" + j + "_transactionText_0", ""));
 
 				// trans5
-				money5.setText(LoginActivity.credentials.getString(
-						"transaction_5_" + j + "_money", ""));
+				money5.setText(LoginActivity.credentials
+						.getString("transaction_5_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date5.setText(LoginActivity.credentials.getString(
 						"transaction_5_" + j + "_date", ""));
 				counterAccount5.setText(LoginActivity.credentials.getString(
@@ -242,8 +238,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_5_" + j + "_transactionText_0", ""));
 
 				// trans6
-				money6.setText(LoginActivity.credentials.getString(
-						"transaction_6_" + j + "_money", ""));
+				money6.setText(LoginActivity.credentials
+						.getString("transaction_6_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date6.setText(LoginActivity.credentials.getString(
 						"transaction_6_" + j + "_date", ""));
 				counterAccount6.setText(LoginActivity.credentials.getString(
@@ -252,8 +249,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_6_" + j + "_transactionText_0", ""));
 
 				// trans7
-				money7.setText(LoginActivity.credentials.getString(
-						"transaction_7_" + j + "_money", ""));
+				money7.setText(LoginActivity.credentials
+						.getString("transaction_7_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date7.setText(LoginActivity.credentials.getString(
 						"transaction_7_" + j + "_date", ""));
 				counterAccount7.setText(LoginActivity.credentials.getString(
@@ -262,8 +260,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_7_" + j + "_transactionText_0", ""));
 
 				// trans8
-				money8.setText(LoginActivity.credentials.getString(
-						"transaction_8_" + j + "_money", ""));
+				money8.setText(LoginActivity.credentials
+						.getString("transaction_8_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date8.setText(LoginActivity.credentials.getString(
 						"transaction_8_" + j + "_date", ""));
 				counterAccount8.setText(LoginActivity.credentials.getString(
@@ -272,8 +271,9 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_8_" + j + "_transactionText_0", ""));
 
 				// trans9
-				money9.setText(LoginActivity.credentials.getString(
-						"transaction_9_" + j + "_money", ""));
+				money9.setText(LoginActivity.credentials
+						.getString("transaction_9_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date9.setText(LoginActivity.credentials.getString(
 						"transaction_9_" + j + "_date", ""));
 				counterAccount9.setText(LoginActivity.credentials.getString(
@@ -282,14 +282,90 @@ public class Umsatzanzeige extends Fragment {
 						"transaction_9_" + j + "_transactionText_0", ""));
 
 				// trans10
-				money10.setText(LoginActivity.credentials.getString(
-						"transaction_10_" + j + "_money", ""));
+				money10.setText(LoginActivity.credentials
+						.getString("transaction_10_" + j + "_money", "")
+						.replace("[", "").replace("]", ""));
 				date10.setText(LoginActivity.credentials.getString(
 						"transaction_10_" + j + "_date", ""));
 				counterAccount10.setText(LoginActivity.credentials.getString(
 						"transaction_10_" + j + "_counterAccount", ""));
 				transactiontext10.setText(LoginActivity.credentials.getString(
 						"transaction_10_" + j + "_transactionText_0", ""));
+
+				// farben anpassen
+				// money2
+				if (money2.getText().equals("0.0 EUR")) {
+					money2.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money2.getText()).contains("-")) {
+					money2.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money2.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money3
+				if (money3.getText().equals("0.0 EUR")) {
+					money3.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money3.getText()).contains("-")) {
+					money3.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money3.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money4
+				if (money4.getText().equals("0.0 EUR")) {
+					money4.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money4.getText()).contains("-")) {
+					money4.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money4.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money5
+				if (money5.getText().equals("0.0 EUR")) {
+					money5.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money5.getText()).contains("-")) {
+					money5.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money5.setTextColor(getResources().getColor(R.color.green));
+				}
+				// monry6
+				if (money6.getText().equals("0.0 EUR")) {
+					money6.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money6.getText()).contains("-")) {
+					money6.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money6.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money7
+				if (money7.getText().equals("0.0 EUR")) {
+					money7.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money7.getText()).contains("-")) {
+					money7.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money7.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money8
+				if (money8.getText().equals("0.0 EUR")) {
+					money8.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money8.getText()).contains("-")) {
+					money8.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money8.setTextColor(getResources().getColor(R.color.green));
+				}
+				// mney9
+				if (money9.getText().equals("0.0 EUR")) {
+					money9.setTextColor(getResources().getColor(R.color.orange));
+				} else if (((String) money9.getText()).contains("-")) {
+					money9.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money9.setTextColor(getResources().getColor(R.color.green));
+				}
+				// money10
+				if (money10.getText().equals("0.0 EUR")) {
+					money10.setTextColor(getResources()
+							.getColor(R.color.orange));
+				} else if (((String) money10.getText()).contains("-")) {
+					money10.setTextColor(getResources().getColor(R.color.red));
+				} else {
+					money10.setTextColor(getResources().getColor(R.color.green));
+				}
 
 				// Hier muss die Umsatzanzeige gesetzt werden.
 			}
