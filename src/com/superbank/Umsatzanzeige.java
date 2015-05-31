@@ -182,25 +182,45 @@ public class Umsatzanzeige extends Fragment {
 
 				// Bankenabhaenginge Werte definieren
 
-				// Bank 1
+				// -----------------------Bank 1
+				// trans1
 				String transaction_1_1_money = "transaction_1_1_money";
 				String transaction_1_1_date = "transaction_1_1_date";
 				String transaction_1_1_counterAccount = "transaction_1_1_counterAccount";
+				String transaction_1_1_transactionText_0 = "transaction_1_1_transactionText_0";
+				String transaction_1_1_transactionText_1 = "transaction_1_1_transactionText_1";
+				String transaction_1_1_transactionText_2 = "transaction_1_1_transactionText_2";
+				String transaction_1_1_transactionText_3 = "transaction_1_1_transactionText_3";
 
+				// trans2
 				String transaction_2_1_money = "transaction_2_1_money";
 				String transaction_2_1_date = "transaction_2_1_date";
 				String transaction_2_1_counterAccount = "transaction_2_1_counterAccount";
+				String transaction_2_1_transactionText_0 = "transaction_2_1_transactionText_0";
+				String transaction_2_1_transactionText_1 = "transaction_2_1_transactionText_1";
+				String transaction_2_1_transactionText_2 = "transaction_2_1_transactionText_2";
+				String transaction_2_1_transactionText_3 = "transaction_2_1_transactionText_3";
 
-				// Bank 2
+				// -----------------------Bank 2
+				// trans1
 				String transaction_1_2_money = "transaction_1_2_money";
 				String transaction_1_2_date = "transaction_1_2_date";
 				String transaction_1_2_counterAccount = "transaction_1_2_counterAccount";
+				String transaction_1_2_transactionText_0 = "transaction_1_2_transactionText_0";
+				String transaction_1_2_transactionText_1 = "transaction_1_2_transactionText_1";
+				String transaction_1_2_transactionText_2 = "transaction_1_2_transactionText_2";
+				String transaction_1_2_transactionText_3 = "transaction_1_2_transactionText_3";
 
+				// trans2
 				String transaction_2_2_money = "transaction_2_2_money";
 				String transaction_2_2_date = "transaction_2_2_date";
 				String transaction_2_2_counterAccount = "transaction_2_2_counterAccount";
+				String transaction_2_2_transactionText_0 = "transaction_2_2_transactionText_0";
+				String transaction_2_2_transactionText_1 = "transaction_2_2_transactionText_1";
+				String transaction_2_2_transactionText_2 = "transaction_2_2_transactionText_2";
+				String transaction_2_2_transactionText_3 = "transaction_2_2_transactionText_3";
 
-				// Bank 3
+				// -----------------------Bank 3
 				String transaction_1_3_money = "transaction_1_3_money";
 				String transaction_1_3_date = "transaction_1_3_date";
 				String transaction_1_3_counterAccount = "transaction_1_2_counterAccount";
@@ -209,26 +229,62 @@ public class Umsatzanzeige extends Fragment {
 				String transaction_2_3_date = "transaction_2_3_date";
 				String transaction_2_3_counterAccount = "transaction_2_2_counterAccount";
 
-				// Werte setzen
+				// Werte setzen TO DO
 
 				if (i == 0) {
-					// money1.setText("Test1");
+					// trans1
 					money1.setText(LoginActivity.credentials.getString(
 							transaction_1_1_money, ""));
 					date1.setText(LoginActivity.credentials.getString(
 							transaction_1_1_date, ""));
 					counterAccount1.setText(LoginActivity.credentials
 							.getString(transaction_1_1_counterAccount, ""));
+					transactiontext1.setText(LoginActivity.credentials
+							.getString(transaction_1_1_transactionText_0 + "\n"
+									+ transaction_1_1_transactionText_1 + "\n"
+									+ transaction_1_1_transactionText_2 + "\n"
+									+ transaction_1_1_transactionText_3, ""));
+
+					// trans2
+					money2.setText(LoginActivity.credentials.getString(
+							transaction_2_1_money, ""));
+					date2.setText(LoginActivity.credentials.getString(
+							transaction_2_1_date, ""));
+					counterAccount2.setText(LoginActivity.credentials
+							.getString(transaction_2_1_counterAccount, ""));
+					transactiontext2.setText(LoginActivity.credentials
+							.getString(transaction_2_1_transactionText_0 + "\n"
+									+ transaction_2_1_transactionText_1 + "\n"
+									+ transaction_2_1_transactionText_2 + "\n"
+									+ transaction_2_1_transactionText_3, ""));
 
 				}
 				if (i == 1) {
-					// money1.setText("Test2");
+					// trans1
 					money1.setText(LoginActivity.credentials.getString(
 							transaction_1_2_money, ""));
 					date1.setText(LoginActivity.credentials.getString(
 							transaction_1_2_date, ""));
 					counterAccount1.setText(LoginActivity.credentials
 							.getString(transaction_1_2_counterAccount, ""));
+					transactiontext1.setText(LoginActivity.credentials
+							.getString(transaction_1_2_transactionText_0 + "\n"
+									+ transaction_1_2_transactionText_1 + "\n"
+									+ transaction_1_2_transactionText_2 + "\n"
+									+ transaction_1_2_transactionText_3, ""));
+
+					// trans2
+					money2.setText(LoginActivity.credentials.getString(
+							transaction_2_2_money, ""));
+					date2.setText(LoginActivity.credentials.getString(
+							transaction_2_2_date, ""));
+					counterAccount2.setText(LoginActivity.credentials
+							.getString(transaction_2_2_counterAccount, ""));
+					transactiontext2.setText(LoginActivity.credentials
+							.getString(transaction_2_2_transactionText_0 + "\n"
+									+ transaction_2_2_transactionText_1 + "\n"
+									+ transaction_2_2_transactionText_2 + "\n"
+									+ transaction_2_2_transactionText_3, ""));
 				}
 
 				if (i == 2) {
