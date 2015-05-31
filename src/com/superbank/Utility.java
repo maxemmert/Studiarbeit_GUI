@@ -5,16 +5,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import name.studiarbeit.hbci.AccountReference;
 import name.studiarbeit.hbci.Balance;
 import name.studiarbeit.hbci.Money;
-import name.studiarbeit.hbci.Transaction;
 import name.studiarbeit.hbci.Transactions;
 import name.studiarbeit.hbci.impl.HbciAccount;
 import name.studiarbeit.hbci.impl.HbciCredentials;
 import name.studiarbeit.hbci.impl.HbciSession;
+import name.studiarbeit.hbci.impl.HbciTransaction;
 import name.studiarbeit.hbci.impl.HbciTransactions;
 import name.studiarbeit.hbci.impl.HbciVersion;
 
@@ -167,13 +166,21 @@ public class Utility {
 		editor.remove("laenderKennung" + "_" + intStr);
 		editor.remove("kontoNummer" + "_" + intStr);
 		editor.remove("bankleitzahl" + "_" + intStr);
-		editor.remove("transaction" + "_" + intStr + "_" + "money");
-		editor.remove("transaction" + "_" + intStr + "_" + "date");
-		editor.remove("transaction" + "_" + intStr + "_" + "counterAccount");
-		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_0");
-		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_1");
-		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_2");
-		editor.remove("transaction" + "_" + intStr + "_" + "transactionText_3");
+		for (int j = 1; j <= 10; j++) {
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "money");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_" + "date");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "counterAccount");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "transactionText_0");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "transactionText_1");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "transactionText_2");
+			editor.remove("transaction" + "_" + j + "_" + intStr + "_"
+					+ "transactionText_3");
+		}
 		editor.remove("bankName" + "_" + intStr);
 		editor.commit();
 	}
@@ -417,7 +424,7 @@ public class Utility {
 		}
 		Editor editor = LoginActivity.credentials.edit();
 		for (int i = 1; i <= 10; i++) {
-			Transaction transaction = hbciTransactions.transactions
+			HbciTransaction transaction = (HbciTransaction) hbciTransactions.transactions
 					.get(hbciTransactions.transactions.size() - i);
 			// Hole ï¿½berweisungsbetrag
 			Money money = transaction.getBalance();
@@ -434,30 +441,34 @@ public class Utility {
 					+ String.valueOf(j) + "_" + "counterAccount",
 					counterAccount.getName());
 			// Hole ï¿½berweisungstext als List<String> KP OB ES FUNZT!
-			List<String> textList = transaction.getUsageLines();
-			if (textList != null) {
-				if (textList.get(0) != null) {
-					editor.putString("transaction" + "_" + String.valueOf(i)
-							+ "_" + String.valueOf(j) + "_"
-							+ "transactionText_0", textList.get(0));
-				}
-				if (textList.get(1) != null) {
-					editor.putString("transaction" + "_" + String.valueOf(i)
-							+ "_" + String.valueOf(j) + "_"
-							+ "transactionText_1", textList.get(1));
-				}
-				if (textList.get(2) != null) {
-					editor.putString("transaction" + "_" + String.valueOf(i)
-							+ "_" + String.valueOf(j) + "_"
-							+ "transactionText_2", textList.get(2));
-				}
-				if (textList.get(3) != null) {
-					editor.putString("transaction" + "_" + String.valueOf(i)
-							+ "_" + String.valueOf(j) + "_"
-							+ "transactionText_3", textList.get(3));
-				}
-
-			}
+			editor.putString("transaction" + "_" + String.valueOf(i) + "_"
+					+ String.valueOf(j) + "_" + "transactionText_0",
+					transaction.getText());
+			// TODO: rausnehmen?
+			// List<String> textList = transaction.getUsageLines();
+			// if (textList != null) {
+			// if (textList.get(0) != null) {
+			// editor.putString("transaction" + "_" + String.valueOf(i)
+			// + "_" + String.valueOf(j) + "_"
+			// + "transactionText_0", textList.get(0));
+			// }
+			// if (textList.get(1) != null) {
+			// editor.putString("transaction" + "_" + String.valueOf(i)
+			// + "_" + String.valueOf(j) + "_"
+			// + "transactionText_1", textList.get(1));
+			// }
+			// if (textList.get(2) != null) {
+			// editor.putString("transaction" + "_" + String.valueOf(i)
+			// + "_" + String.valueOf(j) + "_"
+			// + "transactionText_2", textList.get(2));
+			// }
+			// if (textList.get(3) != null) {
+			// editor.putString("transaction" + "_" + String.valueOf(i)
+			// + "_" + String.valueOf(j) + "_"
+			// + "transactionText_3", textList.get(3));
+			// }
+			//
+			// }
 		}
 		editor.commit();
 	}

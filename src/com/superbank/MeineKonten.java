@@ -44,11 +44,13 @@ public class MeineKonten extends Fragment {
 		TableLayout summentable = (TableLayout) rootView
 				.findViewById(R.id.gesamtsumme);
 		if (!MainActivity.summe.equals("0.0 EUR")) {
-			summentable.setBackgroundResource(R.color.red);
-		} else if (MainActivity.summe.equals("0.0 EUR")) {
-			summentable.setBackgroundResource(R.color.orange);
-		} else if (!MainActivity.summe.contains("-")) {
 			summentable.setBackgroundResource(R.color.green);
+		}
+		if (MainActivity.summe.equals("0.0 EUR")) {
+			summentable.setBackgroundResource(R.color.orange);
+		}
+		if (MainActivity.summe.contains("-")) {
+			summentable.setBackgroundResource(R.color.red);
 		}
 		// vorsichtshalber "fehlerhafte" konten loeschen
 		for (int i = 1; i < 4; i++) {
