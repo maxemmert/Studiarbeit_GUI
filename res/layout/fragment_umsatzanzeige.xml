@@ -41,7 +41,33 @@
             android:layout_marginLeft="0dp" >
 
             <!-- Umsatz 1 ANFANG -->
- <!--
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzdate1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date1"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money1"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
@@ -53,18 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
                     android:text="umsatztransactiontext1"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -80,16 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="counteracc1"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date1"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </TableRow>-->
+            </TableRow>
 
             <!-- Umsatz 1 ENDE -->
 
@@ -97,7 +103,33 @@
             <!-- Umsatz 2 ANFANG -->
 
             <TableRow
-                android:id="@+id/tableRow1"
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzdate2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date2"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money2"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp" >
@@ -107,126 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
                     android:text="umsatztransactiontext2"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money2"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" >
-
-                <TextView
-                    android:id="@+id/umsatzcounterAccount2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="counteracc2"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date2"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </TableRow>
-
-            <!-- Umsatz 2 ENDE -->
-
-
-            <!-- Umsatz 3 ANFANG -->
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" >
-
-                <TextView
-                    android:id="@+id/umsatztransactiontext3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext3"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money3"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" >
-
-                <TextView
-                    android:id="@+id/umsatzcounterAccount3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="counteracc3"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date3"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-            </TableRow>
-
-            <!-- Umsatz 3 ENDE -->
-
-
-            <!-- Umsatz 4 ANFANG -->
-
-            <TableRow
-                android:id="@+id/tableRow8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp" >
-
-                <TextView
-                    android:id="@+id/umsatztransactiontext4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext4"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money4"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -237,26 +150,17 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount4"
+                    android:id="@+id/umsatzcounterAccount2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc4"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date4"
+                    android:text="counteracc2"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
-            <!-- Umsatz 4 ENDE -->
+            <!-- Umsatz 2 ENDE -->
 
 
-            <!-- Umsatz 5 ANFANG -->
+            <!-- Umsatz 3 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow10"
@@ -265,22 +169,22 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext5"
+                    android:id="@+id/umsatzdate3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext5"
+                    android:text="date3"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzmoney5"
+                    android:id="@+id/umsatzmoney3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="money5"
+                    android:text="money3"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -291,26 +195,13 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount5"
+                    android:id="@+id/umsatztransactiontext3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc5"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date5"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext3"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
-
-            <!-- Umsatz 5 ENDE -->
-
-
-            <!-- Umsatz 6 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow12"
@@ -319,24 +210,17 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext6"
+                    android:id="@+id/umsatzcounterAccount3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext6"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money6"
+                    android:text="counteracc3"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
+
+            <!-- Umsatz 3 ENDE -->
+
+
+            <!-- Umsatz 4 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow13"
@@ -345,26 +229,24 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount6"
+                    android:id="@+id/umsatzdate4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc6"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date4"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzdate6"
+                    android:id="@+id/umsatzmoney4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="date6"
+                    android:text="money4"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
-
-            <!-- Umsatz 6 ENDE -->
-
-
-            <!-- Umsatz 7 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow14"
@@ -373,22 +255,11 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext7"
+                    android:id="@+id/umsatztransactiontext4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext7"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money7"
+                    android:text="umsatztransactiontext4"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -399,26 +270,17 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount7"
+                    android:id="@+id/umsatzcounterAccount4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc7"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date7"
+                    android:text="counteracc4"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
-            <!-- Umsatz 7 ENDE -->
+            <!-- Umsatz 4 ENDE -->
 
 
-            <!-- Umsatz 8 ANFANG -->
+            <!-- Umsatz 5 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow16"
@@ -427,22 +289,22 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext8"
+                    android:id="@+id/umsatzdate5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext8"
+                    android:text="date5"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzmoney8"
+                    android:id="@+id/umsatzmoney5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="money8"
+                    android:text="money5"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -453,25 +315,13 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount8"
+                    android:id="@+id/umsatztransactiontext5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc8"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzdate8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
-                    android:text="date8"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext5"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
-
-            <!-- Umsatz 8 ENDE -->
-            
-            <!-- Umsatz 9 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow18"
@@ -480,24 +330,17 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext9"
+                    android:id="@+id/umsatzcounterAccount5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext9"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money9"
+                    android:text="counteracc5"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
+
+            <!-- Umsatz 5 ENDE -->
+
+
+            <!-- Umsatz 6 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow19"
@@ -506,25 +349,24 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount9"
+                    android:id="@+id/umsatzdate6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc9"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date6"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
-                    android:id="@+id/umsatzdate9"
+                    android:id="@+id/umsatzmoney6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="date9"
+                    android:text="money6"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
-
-            <!-- Umsatz 9 ENDE -->
-            
-            <!-- Umsatz 10 ANFANG -->
 
             <TableRow
                 android:id="@+id/tableRow20"
@@ -533,22 +375,11 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatztransactiontext10"
+                    android:id="@+id/umsatztransactiontext6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="20dp"
-                    android:text="umsatztransactiontext10"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <TextView
-                    android:id="@+id/umsatzmoney10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="right"
-                    android:text="money10"
+                    android:text="umsatztransactiontext6"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
@@ -559,19 +390,249 @@
                 android:layout_marginLeft="10dp" >
 
                 <TextView
-                    android:id="@+id/umsatzcounterAccount10"
+                    android:id="@+id/umsatzcounterAccount6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="counteracc10"
+                    android:text="counteracc6"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <!-- Umsatz 6 ENDE -->
+
+
+            <!-- Umsatz 7 ANFANG -->
+
+            <TableRow
+                android:id="@+id/tableRow22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzdate7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date7"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money7"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatztransactiontext7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext7"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzcounterAccount7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="counteracc7"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <!-- Umsatz 7 ENDE -->
+
+
+            <!-- Umsatz 8 ANFANG -->
+
+            <TableRow
+                android:id="@+id/tableRow25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzdate8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date8"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money8"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatztransactiontext8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext8"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzcounterAccount8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="counteracc8"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+            <!-- Umsatz 8 ENDE -->
+
+
+            <!-- Umsatz 9 ANFANG -->
+
+            <TableRow
+                android:id="@+id/tableRow28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzdate9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:text="date9"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money9"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatztransactiontext9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext9"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzcounterAccount9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="counteracc9"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <!-- Umsatz 9 ENDE -->
+
+
+            <!-- Umsatz 10 ANFANG -->
+
+            <TableRow
+                android:id="@+id/tableRow31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
 
                 <TextView
                     android:id="@+id/umsatzdate10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="right"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
                     android:text="date10"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/umsatzmoney10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="right"
+                    android:text="money10"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatztransactiontext10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="umsatztransactiontext10"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/umsatzcounterAccount10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="counteracc10"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
             </TableRow>
 
