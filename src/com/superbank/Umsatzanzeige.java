@@ -201,6 +201,78 @@ public class Umsatzanzeige extends Fragment {
 				String transaction_2_1_transactionText_2 = "transaction_2_1_transactionText_2";
 				String transaction_2_1_transactionText_3 = "transaction_2_1_transactionText_3";
 
+				// trans3
+				String transaction_3_1_money = "transaction_3_1_money";
+				String transaction_3_1_date = "transaction_3_1_date";
+				String transaction_3_1_counterAccount = "transaction_3_1_counterAccount";
+				String transaction_3_1_transactionText_0 = "transaction_3_1_transactionText_0";
+				String transaction_3_1_transactionText_1 = "transaction_3_1_transactionText_1";
+				String transaction_3_1_transactionText_2 = "transaction_3_1_transactionText_2";
+				String transaction_3_1_transactionText_3 = "transaction_3_1_transactionText_3";
+
+				// trans4
+				String transaction_4_1_money = "transaction_4_1_money";
+				String transaction_4_1_date = "transaction_4_1_date";
+				String transaction_4_1_counterAccount = "transaction_4_1_counterAccount";
+				String transaction_4_1_transactionText_0 = "transaction_4_1_transactionText_0";
+				String transaction_4_1_transactionText_1 = "transaction_4_1_transactionText_1";
+				String transaction_4_1_transactionText_2 = "transaction_4_1_transactionText_2";
+				String transaction_4_1_transactionText_3 = "transaction_4_1_transactionText_3";
+
+				// trans5
+				String transaction_5_1_money = "transaction_5_1_money";
+				String transaction_5_1_date = "transaction_5_1_date";
+				String transaction_5_1_counterAccount = "transaction_5_1_counterAccount";
+				String transaction_5_1_transactionText_0 = "transaction_5_1_transactionText_0";
+				String transaction_5_1_transactionText_1 = "transaction_5_1_transactionText_1";
+				String transaction_5_1_transactionText_2 = "transaction_5_1_transactionText_2";
+				String transaction_5_1_transactionText_3 = "transaction_5_1_transactionText_3";
+
+				// trans6
+				String transaction_6_1_money = "transaction_6_1_money";
+				String transaction_6_1_date = "transaction_6_1_date";
+				String transaction_6_1_counterAccount = "transaction_6_1_counterAccount";
+				String transaction_6_1_transactionText_0 = "transaction_6_1_transactionText_0";
+				String transaction_6_1_transactionText_1 = "transaction_6_1_transactionText_1";
+				String transaction_6_1_transactionText_2 = "transaction_6_1_transactionText_2";
+				String transaction_6_1_transactionText_3 = "transaction_6_1_transactionText_3";
+
+				// trans7
+				String transaction_7_1_money = "transaction_7_1_money";
+				String transaction_7_1_date = "transaction_7_1_date";
+				String transaction_7_1_counterAccount = "transaction_7_1_counterAccount";
+				String transaction_7_1_transactionText_0 = "transaction_7_1_transactionText_0";
+				String transaction_7_1_transactionText_1 = "transaction_7_1_transactionText_1";
+				String transaction_7_1_transactionText_2 = "transaction_7_1_transactionText_2";
+				String transaction_7_1_transactionText_3 = "transaction_7_1_transactionText_3";
+
+				// trans8
+				String transaction_8_1_money = "transaction_8_1_money";
+				String transaction_8_1_date = "transaction_8_1_date";
+				String transaction_8_1_counterAccount = "transaction_8_1_counterAccount";
+				String transaction_8_1_transactionText_0 = "transaction_8_1_transactionText_0";
+				String transaction_8_1_transactionText_1 = "transaction_8_1_transactionText_1";
+				String transaction_8_1_transactionText_2 = "transaction_8_1_transactionText_2";
+				String transaction_8_1_transactionText_3 = "transaction_8_1_transactionText_3";
+
+				// trans9
+				String transaction_9_1_money = "transaction_9_1_money";
+				String transaction_9_1_date = "transaction_9_1_date";
+				String transaction_9_1_counterAccount = "transaction_9_1_counterAccount";
+				String transaction_9_1_transactionText_0 = "transaction_9_1_transactionText_0";
+				String transaction_9_1_transactionText_1 = "transaction_9_1_transactionText_1";
+				String transaction_9_1_transactionText_2 = "transaction_9_1_transactionText_2";
+				String transaction_9_1_transactionText_3 = "transaction_9_1_transactionText_3";
+
+				// trans10
+				String transaction_10_1_money = "transaction_10_1_money";
+				String transaction_10_1_date = "transaction_10_1_date";
+				String transaction_10_1_counterAccount = "transaction_10_1_counterAccount";
+				String transaction_10_1_transactionText_0 = "transaction_10_1_transactionText_0";
+				String transaction_10_1_transactionText_1 = "transaction_10_1_transactionText_1";
+				String transaction_10_1_transactionText_2 = "transaction_10_1_transactionText_2";
+				String transaction_10_1_transactionText_3 = "transaction_10_1_transactionText_3";
+
 				// -----------------------Bank 2
 				// trans1
 				String transaction_1_2_money = "transaction_1_2_money";
@@ -240,7 +312,16 @@ public class Umsatzanzeige extends Fragment {
 					counterAccount1.setText(LoginActivity.credentials
 							.getString(transaction_1_1_counterAccount, ""));
 					transactiontext1.setText(LoginActivity.credentials
-							.getString(transaction_1_1_transactionText_1, ""));
+							.getString(transaction_1_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_1_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_1_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_1_1_transactionText_3, ""));
 
 					// trans2
 					money2.setText(LoginActivity.credentials.getString(
@@ -250,10 +331,168 @@ public class Umsatzanzeige extends Fragment {
 					counterAccount2.setText(LoginActivity.credentials
 							.getString(transaction_2_1_counterAccount, ""));
 					transactiontext2.setText(LoginActivity.credentials
-							.getString(transaction_2_1_transactionText_0 + "\n"
-									+ transaction_2_1_transactionText_1 + "\n"
-									+ transaction_2_1_transactionText_2 + "\n"
-									+ transaction_2_1_transactionText_3, ""));
+							.getString(transaction_2_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_2_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_2_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_2_1_transactionText_3, ""));
+
+					// trans3
+					money3.setText(LoginActivity.credentials.getString(
+							transaction_3_1_money, ""));
+					date3.setText(LoginActivity.credentials.getString(
+							transaction_3_1_date, ""));
+					counterAccount3.setText(LoginActivity.credentials
+							.getString(transaction_3_1_counterAccount, ""));
+					transactiontext3.setText(LoginActivity.credentials
+							.getString(transaction_3_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_3_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_3_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_3_1_transactionText_3, ""));
+
+					// trans4
+					money4.setText(LoginActivity.credentials.getString(
+							transaction_4_1_money, ""));
+					date4.setText(LoginActivity.credentials.getString(
+							transaction_4_1_date, ""));
+					counterAccount4.setText(LoginActivity.credentials
+							.getString(transaction_4_1_counterAccount, ""));
+					transactiontext4.setText(LoginActivity.credentials
+							.getString(transaction_4_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_4_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_4_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_4_1_transactionText_3, ""));
+
+					// trans5
+					money5.setText(LoginActivity.credentials.getString(
+							transaction_5_1_money, ""));
+					date5.setText(LoginActivity.credentials.getString(
+							transaction_5_1_date, ""));
+					counterAccount5.setText(LoginActivity.credentials
+							.getString(transaction_5_1_counterAccount, ""));
+					transactiontext5.setText(LoginActivity.credentials
+							.getString(transaction_5_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_5_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_5_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_5_1_transactionText_3, ""));
+
+					// trans6
+					money6.setText(LoginActivity.credentials.getString(
+							transaction_6_1_money, ""));
+					date6.setText(LoginActivity.credentials.getString(
+							transaction_6_1_date, ""));
+					counterAccount6.setText(LoginActivity.credentials
+							.getString(transaction_6_1_counterAccount, ""));
+					transactiontext6.setText(LoginActivity.credentials
+							.getString(transaction_6_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_6_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_6_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_6_1_transactionText_3, ""));
+
+					// trans7
+					money7.setText(LoginActivity.credentials.getString(
+							transaction_7_1_money, ""));
+					date7.setText(LoginActivity.credentials.getString(
+							transaction_7_1_date, ""));
+					counterAccount7.setText(LoginActivity.credentials
+							.getString(transaction_7_1_counterAccount, ""));
+					transactiontext7.setText(LoginActivity.credentials
+							.getString(transaction_7_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_7_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_7_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_7_1_transactionText_3, ""));
+
+					// trans8
+					money8.setText(LoginActivity.credentials.getString(
+							transaction_8_1_money, ""));
+					date8.setText(LoginActivity.credentials.getString(
+							transaction_8_1_date, ""));
+					counterAccount8.setText(LoginActivity.credentials
+							.getString(transaction_8_1_counterAccount, ""));
+					transactiontext8.setText(LoginActivity.credentials
+							.getString(transaction_8_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_8_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_8_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_8_1_transactionText_3, ""));
+
+					// trans9
+					money9.setText(LoginActivity.credentials.getString(
+							transaction_9_1_money, ""));
+					date9.setText(LoginActivity.credentials.getString(
+							transaction_9_1_date, ""));
+					counterAccount9.setText(LoginActivity.credentials
+							.getString(transaction_9_1_counterAccount, ""));
+					transactiontext9.setText(LoginActivity.credentials
+							.getString(transaction_9_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_9_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_9_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_9_1_transactionText_3, ""));
+
+					// trans10
+					money10.setText(LoginActivity.credentials.getString(
+							transaction_10_1_money, ""));
+					date10.setText(LoginActivity.credentials.getString(
+							transaction_10_1_date, ""));
+					counterAccount10.setText(LoginActivity.credentials
+							.getString(transaction_10_1_counterAccount, ""));
+					transactiontext10.setText(LoginActivity.credentials
+							.getString(transaction_10_1_transactionText_0, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_10_1_transactionText_1, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_10_1_transactionText_2, "")
+							+ "\n"
+							+ LoginActivity.credentials.getString(
+									transaction_10_1_transactionText_3, ""));
 
 				}
 				if (i == 1) {
