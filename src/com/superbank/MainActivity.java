@@ -158,7 +158,7 @@ public class MainActivity extends Activity implements
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.navigation_drawer);
 
-		ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[9];
+		ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[8];
 		drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_action_meine_konten,
 				"Meine Konten");
 		drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_action_umsatz,
@@ -167,15 +167,15 @@ public class MainActivity extends Activity implements
 				"Überweisung");
 		drawerItem[3] = new ObjectDrawerItem(R.drawable.ic_action_zugang,
 				"Kontoverwaltung");
-		drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_action_kontakte,
-				"Kontakte");
-		drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_action_sperren,
+		// drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_action_kontakte,
+		// "Kontakte");
+		drawerItem[4] = new ObjectDrawerItem(R.drawable.ic_action_sperren,
 				"Sperren");
-		drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_action_hilfe,
+		drawerItem[5] = new ObjectDrawerItem(R.drawable.ic_action_hilfe,
 				"Hilfe");
-		drawerItem[7] = new ObjectDrawerItem(R.drawable.ic_action_impressum,
+		drawerItem[6] = new ObjectDrawerItem(R.drawable.ic_action_impressum,
 				"Impressum");
-		drawerItem[8] = new ObjectDrawerItem(R.drawable.ic_action_logout,
+		drawerItem[7] = new ObjectDrawerItem(R.drawable.ic_action_logout,
 				"Logout");
 
 		DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this,
@@ -218,28 +218,28 @@ public class MainActivity extends Activity implements
 					.replace(R.id.container,
 							Kontoverwaltung.newInstance(position)).commit();
 			break;
+		// case 5:
+		// fragmentManager.beginTransaction()
+		// .replace(R.id.container, Kontakte.newInstance(position))
+		// .commit();
+		// break;
 		case 5:
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, Kontakte.newInstance(position))
-					.commit();
-			break;
-		case 6:
 			fragmentManager
 					.beginTransaction()
 					.replace(R.id.container,
 							SperrenOverview.newInstance(position)).commit();
 			break;
-		case 7:
+		case 6:
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, Hilfe.newInstance(position))
 					.commit();
 			break;
-		case 8:
+		case 7:
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, Impressum.newInstance(position))
 					.commit();
 			break;
-		case 9:
+		case 8:
 			logout(this.getCurrentFocus());
 			break;
 		}
@@ -259,19 +259,19 @@ public class MainActivity extends Activity implements
 		case 4:
 			mTitle = getString(R.string.title_section4);
 			break;
+		// case 5:
+		// mTitle = getString(R.string.title_section5);
+		// break;
 		case 5:
-			mTitle = getString(R.string.title_section5);
-			break;
-		case 6:
 			mTitle = getString(R.string.title_section6);
 			break;
-		case 7:
+		case 6:
 			mTitle = getString(R.string.title_section7);
 			break;
-		case 8:
+		case 7:
 			mTitle = getString(R.string.title_section8);
 			break;
-		case 9:
+		case 8:
 			mTitle = "Logout";
 		}
 		mDrawerLayout.closeDrawers(); // close the navigation drawer after

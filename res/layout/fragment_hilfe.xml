@@ -11,16 +11,153 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_section7"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_margin="10dp"
+            android:text="Meine Konten"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="In dem Reiter „Meine Konten“ können bis zu drei Bankkonten dargestellt werden. Jedes Bankkonto wird dabei samt seiner Bezeichnung und dem aktuellen Kontostand abgebildet. Zu jedem Konto existiert eine Synchronisierungsfunktion und eine Schaltfläche, mit der die dazugehörigen Kontenumsätze aufgerufen werden können. In einer unteren Statusbar wird die Summe der Geldbeträge aller synchronisierten Bankkonten samt aktuellem Datum dargestellt. Ist die verfügbare Summe im positiven Bereich, ist der Balken grün, bei negativer Summe rot hinterlegt."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+         <TextView
+            android:id="@+id/textView78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Umsatzanzeige"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Die View Umsatzanzeige dient der Darstellung der Transaktionen und Kontenbewegungen. Über eine Auswahlliste selektiert der Benutzer zunächst das Konto, dessen Transaktionen angezeigt werden sollen. Dabei werden die letzten zehn Umsätze des jeweiligen Kontos samt Verwendungszweck, Begünstigtem, Geldbetrag und Datum abgebildet."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+         <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Überweisung"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Die Überweisungsfunktion ist nicht implementiert. Um die Möglichkeiten der entwickelten Applikation dennoch aufzuzeigen, haben wir die dazugehörige View implementiert (vg. Abb. 10). In einem Eingabebereich kann das Auftraggeberkonto selektiert und die Angaben zum Konto des Begünstigten hinterlegt werden. Über den Button „fortfahren“ gelangt der Benutzer zur View „Prüfen“, auf dem die eingegeben Werte wie beim üblichen Online Banking noch einmal kontrolliert werden können. Diese Funktionalitäten sind bereits gegeben und können getestet werden. "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+              <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Kontoverwaltung"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Die Kontoverwaltung ist der zentrale Einstiegspunkt, um die Applikation einzurichten, zu verwalten und Bankkonten zu synchronisieren (vgl. Abb. 9). In der Kontoverwaltung stehen verschiedene Funktionen zur Verfügung. Dazu zählen das Anlegen sowie das Löschen von Konten. Zudem lassen sich Sperrrufnummern, die einem Bankinstitut zugeordnet sind, hinzufügen und auch wieder löschen. So kann der Anwender schnell reagieren, falls er sein Konto wegen Datendiebstahl oder aus anderen Gründen sperren lassen möchte. Über die Kontoverwaltung ist es zudem möglich, den gesamten Superbank-Account zu löschen. Beim Anlegen eines neuen Kontos muss der Anwender zuerst seine Kontodaten hinterlegen. Danach kann er zwischen verschiedenen Tanmethoden wie beispielsweise dem optischen Chiptan-Verfahren oder dem smsTan-Verfahren wählen. Zudem kann abhängig vom Kreditinstitut ein Sicherheitsfilter ausgewählt werden. Die Nutzung dieses Sicherheitsfilters ist zu empfehlen. Die HBCI-Version ermittelt Superbank intern automatisch anhand der Bankleitzahl."
+			android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+           <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Sperren"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Der Reiter „Sperren“ dient der Übersicht aller Telefonnummern, die der Benutzer über die Kontenverwaltung hinzugefügt hat. Dieses Feature trägt dazu bei, im Falle eines Verlusts von Kredit- oder ec-Karten schnell die richtige Rufnummer zu finden, um eine Kontensperrung bei dem jeweiligen Bankinstitut durchführen lassen zu können."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+          <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Hilfe"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Über den Reiter „Hilfe“ lassen sich nützliche Informationen zur Bedienung und Funktionalität der Applikation abrufen."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+           <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Impressum"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Im Impressum können die Kontaktdaten der Entwickler sowie der Betreuer der Studienarbeit nachgeschlagen werden."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+             <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Logout"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Über den Reiter „Logout“ kann die Applikation verlassen werden. Diese Aktion muss über ein Dialogfenster bestätigt werden."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        
+
+        <TextView
+            android:id="@+id/textView45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
