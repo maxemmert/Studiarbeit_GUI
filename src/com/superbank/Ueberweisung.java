@@ -38,21 +38,21 @@ public class Ueberweisung extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_ueberweisung,
 				container, false);
 
-		if (MainActivity.bankname1 != "") {
+		if (MainActivity.bankname1 != null) {
 			RadioButton radioKto1 = (RadioButton) rootView
 					.findViewById(R.id.radiokonto1);
 			radioKto1.setText(MainActivity.bankname1);
 			radioKto1.setVisibility(View.VISIBLE);
 		}
 
-		if (MainActivity.bankname2 != "") {
+		if (MainActivity.bankname2 != null) {
 			RadioButton radioKto2 = (RadioButton) rootView
 					.findViewById(R.id.radiokonto2);
 			radioKto2.setText(MainActivity.bankname2);
 			radioKto2.setVisibility(View.VISIBLE);
 		}
 
-		if (MainActivity.bankname3 != "") {
+		if (MainActivity.bankname3 != null) {
 			RadioButton radioKto3 = (RadioButton) rootView
 					.findViewById(R.id.radiokonto3);
 			radioKto3.setText(MainActivity.bankname3);
